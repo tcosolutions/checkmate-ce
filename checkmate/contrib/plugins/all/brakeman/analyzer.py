@@ -17,7 +17,7 @@ class BrakemanAnalyzer(BaseAnalyzer):
     def __init__(self, *args, **kwargs):
         super(BrakemanAnalyzer, self).__init__(*args, **kwargs)
         try:
-            result = subprocess.check_output(["brakeman", "--version"])
+            result = subprocess.check_output(["brakeman", "--version"],stderr=subprocess.DEVNULL).strip()
         except subprocess.CalledProcessError:
             logger.error(
                 "Cannot initialize Brakeman analyzer: Executable is missing, please install it.")
@@ -36,15 +36,17 @@ class BrakemanAnalyzer(BaseAnalyzer):
             except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
-        f = open(tmpdir+"/"+file_revision.path, "w")
+        result = subprocess.check_output(["rsync -r . "+tmpdir+" --exclude .git"],shell=True).strip()
+    
+        f = open(tmpdir+"/"+file_revision.path, "wb")
 
         fout = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
         result = {}
         try:
             with f:
                 try:
-                  f.write(file_revision.get_file_content().decode("utf-8"))
-                except:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
                   pass
             try:
                 result = subprocess.check_output(["brakeman",
@@ -52,7 +54,8 @@ class BrakemanAnalyzer(BaseAnalyzer):
                                                   "--path",
                                                   tmpdir,
                                                   "-o",
-                                                  fout.name])
+                                                  fout.name],
+                                                  stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
                 if e.returncode == 2:
                     result = e.output
@@ -88,6 +91,6 @@ class BrakemanAnalyzer(BaseAnalyzer):
                     })
 
         finally:
-            #os.unlink(f.name)
+            # os.unlink(f.name)
             pass
         return {'issues': issues}

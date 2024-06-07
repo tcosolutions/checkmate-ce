@@ -25,13 +25,17 @@ class TrojansourceAnalyzer(BaseAnalyzer):
         f = tempfile.NamedTemporaryFile(delete=False)
         try:
             with f:
-                f.write(file_revision.get_file_content())
+                try:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
+                  pass
             try:
                 result = subprocess.check_output(["/usr/local/bin/find_unicode_control2.py",
                                                   "-p",
                                                   "bidi",
                                                   "-d",
-                                                  f.name])
+                                                  f.name],
+                                                  stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
                 pass
             try:

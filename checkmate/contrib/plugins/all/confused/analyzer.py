@@ -25,12 +25,16 @@ class ConfusedAnalyzer(BaseAnalyzer):
         f = tempfile.NamedTemporaryFile(delete=False)
         try:
             with f:
-                f.write(file_revision.get_file_content())
+                try:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
+                  pass
             try:
                 result = subprocess.check_output(["/root/confused/confused",
                                                   "-l",
                                                   "npm",
-                                                  f.name])
+                                                  f.name],
+                                                  stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
                 pass
             try:
@@ -52,6 +56,5 @@ class ConfusedAnalyzer(BaseAnalyzer):
                 })
 
         finally:
-            #os.unlink(f.name)
-            pass
+            os.unlink(f.name)
         return {'issues': issues}

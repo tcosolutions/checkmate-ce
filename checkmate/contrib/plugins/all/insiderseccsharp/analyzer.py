@@ -20,7 +20,7 @@ class InsiderseccsharpAnalyzer(BaseAnalyzer):
         super(InsiderseccsharpAnalyzer, self).__init__(*args, **kwargs)
         try:
             result = subprocess.check_output(
-                ["/root/insider", "--version"])
+                ["/root/insider", "--version"],stderr=subprocess.DEVNULL).strip()
         except subprocess.CalledProcessError:
             logger.error(
                 "Cannot initialize insidersec analyzer: Executable is missing, please install it.")
@@ -39,24 +39,32 @@ class InsiderseccsharpAnalyzer(BaseAnalyzer):
             except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
-        f = open(tmpdir+"/"+file_revision.path, "w")
+        
+        result = subprocess.check_output(["rsync -r . "+tmpdir+" --exclude .git"],shell=True).strip()
+        
+        f = open(tmpdir+"/"+file_revision.path, "wb")
 
         fout = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
         result = {}
         try:
             with f:
-                f.write(file_revision.get_file_content().decode("utf-8"))
+                try:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
+                  pass
             try:
                 result = subprocess.check_output(["/root/insider",
                                                   "-tech",
                                                   "csharp",
                                                   "-target",
-                                                  f.name])
+                                                  f.name],
+                                                  stderr=subprocess.DEVNULL).strip()
                 file_exists = exists("report.json")
-                if file_exists:
+                if file_exists:     
                     result = subprocess.check_output(["mv",
                                                   "report.json",
-                                                  tmpdir])
+                                                  tmpdir],
+                                                  stderr=subprocess.DEVNULL).strip()
 
             except subprocess.CalledProcessError as e:
                 if e.returncode == 1:
@@ -66,6 +74,7 @@ class InsiderseccsharpAnalyzer(BaseAnalyzer):
                     result = []
                     pass
                 else:
+                    #print((e.returncode))
                     result = e.output
                     pass
 
@@ -97,4 +106,9 @@ class InsiderseccsharpAnalyzer(BaseAnalyzer):
                 pass
 
         finally:
-            return {'issues': issues}
+          try:
+            os.remove('report.html')
+            os.remove('style.css')
+          except FileNotFoundError:
+            pass
+          return {'issues': issues}

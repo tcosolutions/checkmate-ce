@@ -18,7 +18,7 @@ class SemgrepccppAnalyzer(BaseAnalyzer):
         super(SemgrepccppAnalyzer, self).__init__(*args, **kwargs)
         try:
             result = subprocess.check_output(
-                ["semgrep", "--version"])
+                ["semgrep", "--version"],stderr=subprocess.DEVNULL).strip()
         except subprocess.CalledProcessError:
             logger.error(
                 "Cannot initialize semgrep analyzer: Executable is missing, please install it.")
@@ -37,20 +37,24 @@ class SemgrepccppAnalyzer(BaseAnalyzer):
             except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
-        f = open(tmpdir+"/"+file_revision.path, "w")
+        f = open(tmpdir+"/"+file_revision.path, "wb")
 
         fout = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
         result = {}
         try:
             with f:
-                f.write(file_revision.get_file_content().decode("utf-8"))
+                try:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
+                  pass
             try:
                 result = subprocess.check_output(["semgrep",
                                                   "--config",
                                                   "/root/flawfinder.yml",
                                                   "--no-git-ignore",
                                                   "--json",
-                                                  f.name])
+                                                  f.name],
+                                                  stderr=subprocess.DEVNULL).strip()
                 
             except subprocess.CalledProcessError as e:
                 if e.returncode == 4:
@@ -62,7 +66,6 @@ class SemgrepccppAnalyzer(BaseAnalyzer):
                     result = e.output
                     pass
 
-            
             try:
                 json_result = json.loads(result)
 
@@ -74,9 +77,7 @@ class SemgrepccppAnalyzer(BaseAnalyzer):
                     if ".c" in file_revision.path:
                         val = issue['check_id']
                         val = val.replace("root.","")
-                        val = val.replace(".","");
-                        val = val.replace("-","");
-
+                        val = val.title().replace("_","")
 
                         issues.append({
                             'code': val,
@@ -90,4 +91,4 @@ class SemgrepccppAnalyzer(BaseAnalyzer):
                 pass
 
         finally:
-            return {'issues': issues}
+          return {'issues': issues}

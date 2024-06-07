@@ -98,4 +98,3 @@ class SemgrepAnalyzer(BaseAnalyzer):
 
         finally:
          return {'issues': issues}
-

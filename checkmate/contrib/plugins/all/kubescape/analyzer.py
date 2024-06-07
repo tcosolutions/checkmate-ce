@@ -18,7 +18,7 @@ class KubescapeAnalyzer(BaseAnalyzer):
         super(KubescapeAnalyzer, self).__init__(*args, **kwargs)
         try:
             result = subprocess.check_output(
-                ["kubescape", "version"])
+                ["kubescape", "version"],stderr=subprocess.DEVNULL).strip()
         except subprocess.CalledProcessError:
             logger.error(
                 "Cannot initialize kubescape analyzer: Executable is missing, please install it.")
@@ -37,13 +37,19 @@ class KubescapeAnalyzer(BaseAnalyzer):
             except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
-        f = open(tmpdir+"/"+file_revision.path, "w")
+
+        result = subprocess.check_output(["rsync -r . "+tmpdir+" --exclude .git"],shell=True).strip()
+                                        
+        f = open(tmpdir+"/"+file_revision.path, "wb")
 
         fout = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
         result = {}
         try:
             with f:
-                f.write(file_revision.get_file_content().decode("utf-8"))
+                try:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
+                  pass
             try:
                 result = subprocess.check_output(["kubescape",
                                                   "scan",
@@ -53,7 +59,8 @@ class KubescapeAnalyzer(BaseAnalyzer):
                                                   "--format-version",
                                                   "v2",
                                                   "--output",
-                                                  fout.name])
+                                                  fout.name],
+                                                  stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
                 if e.returncode == 1:
                     result = e.output
@@ -62,6 +69,7 @@ class KubescapeAnalyzer(BaseAnalyzer):
                     result = []
                     pass
                 else:
+                    #print((e.returncode))
                     result = e.output
                     pass
 
@@ -76,13 +84,23 @@ class KubescapeAnalyzer(BaseAnalyzer):
             try:
 
                 for issue in json_result['results']:
-                  for control in issue['controls']: 
+                  for control in issue['controls']:
+                    controlkey = control['controlID']
+                    sev = json_result['summaryDetails']['controls'][controlkey]['scoreFactor']
+                    if sev>=7:
+                      severity = "High"
+                    elif sev>=4 and sev>=6:
+                      severity = "Medium"
+                    else:
+                      severity = "Warning"
+
                     line = 1
                     location = (((line, None),
                                  (line, None)),)
 
                     issues.append({
                             'code': control['controlID'],
+                            'severity': severity,
                             'location': location,
                             'data': control['name'],
                             'file': file_revision.path,
@@ -93,4 +111,4 @@ class KubescapeAnalyzer(BaseAnalyzer):
                 pass
 
         finally:
-            return {'issues': issues}
+          return {'issues': issues}

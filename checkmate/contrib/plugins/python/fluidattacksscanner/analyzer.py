@@ -31,12 +31,12 @@ class FluidAttacksAnalyzer(BaseAnalyzer):
             except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
-        #result = subprocess.check_output(["rsync . "+tmpdir+" --exclude .git"],shell=True).strip()
+        result = subprocess.check_output(["rsync -r . "+tmpdir+" --exclude .git"],shell=True).strip()
 
         f = open(tmpdir+"/"+file_revision.path, "wb")
 
         result = ""
-        fconf = tempfile.NamedTemporaryFile(delete=False,suffix='.yaml')
+        fconf = tempfile.NamedTemporaryFile(delete=False, suffix='.yaml')
         fresults = tempfile.NamedTemporaryFile(delete=False)
 
         try:
@@ -70,7 +70,7 @@ class FluidAttacksAnalyzer(BaseAnalyzer):
             my_file = open(fresults.name, 'r')
             reader = csv.reader(my_file)
             next(reader)
-        
+      
 
             outjson = []
             val ={}
@@ -89,13 +89,11 @@ class FluidAttacksAnalyzer(BaseAnalyzer):
                   location = (((line, line),
                              (line, None)),)
 
-                  code = issue["data"]
-                  code = code.split(' ', 1)[0]
-                  code = code.replace(".","")
-                  code = "F"+code
+                  data = issue["data"]
+                  data = data.split(' ', 1)[1]
                   if ".py" in file_revision.path:
                     issues.append({
-                      'code': code,
+                      'code': "I001",
                       'location': location,
                       'data': data,
                       'file': file_revision.path,
@@ -107,7 +105,6 @@ class FluidAttacksAnalyzer(BaseAnalyzer):
                 pass
 
         finally:
-            #os.unlink(f.name)
-            pass
+            os.unlink(f.name)
         return {'issues': issues}
 

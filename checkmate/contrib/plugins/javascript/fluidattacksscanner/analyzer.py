@@ -31,11 +31,12 @@ class FluidAttacksAnalyzer(BaseAnalyzer):
             except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
+        result = subprocess.check_output(["rsync -r . "+tmpdir+" --exclude .git"],shell=True).strip()
 
         f = open(tmpdir+"/"+file_revision.path, "wb")
 
         result = ""
-        fconf = tempfile.NamedTemporaryFile(delete=False,suffix='.yaml')
+        fconf = tempfile.NamedTemporaryFile(delete=False, suffix='.yaml')
         fresults = tempfile.NamedTemporaryFile(delete=False)
 
         try:
@@ -69,6 +70,8 @@ class FluidAttacksAnalyzer(BaseAnalyzer):
             my_file = open(fresults.name, 'r')
             reader = csv.reader(my_file)
             next(reader)
+       
+
             outjson = []
             val ={}
             try:
@@ -85,27 +88,23 @@ class FluidAttacksAnalyzer(BaseAnalyzer):
                   line = int(line)
                   location = (((line, line),
                              (line, None)),)
-                  
-                  code = issue["data"]
-                  code = code.split(' ', 1)[0]
-                  code = code.replace(".","")
-                  code = "F"+code
 
+                  data = issue["data"]
+                  data = data.split(' ', 1)[1]
                   if ".go" in file_revision.path or ".cs" in file_revision.path or ".java" in file_revision.path or ".js" in file_revision.path or ".ts" in file_revision.path:
                     issues.append({
-                      'code': code,
+                      'code': "I001",
                       'location': location,
-                      'data': issue["data"],
+                      'data': data,
                       'file': file_revision.path,
                       'line': line,
-                      'fingerprint': self.get_fingerprint_from_code(file_revision, location, extra_data=issue["data"])
+                      'fingerprint': self.get_fingerprint_from_code(file_revision, location, extra_data=data)
                     })
 
             except KeyError:
                 pass
 
         finally:
-            #os.unlink(f.name)
-            pass
+            os.unlink(f.name)
         return {'issues': issues}
 

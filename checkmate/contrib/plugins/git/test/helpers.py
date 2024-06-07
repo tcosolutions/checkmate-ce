@@ -12,7 +12,6 @@ from checkmate.management.helpers import get_project_and_backend
 import tempfile
 import shutil
 import os
-
 import subprocess
 import logging
 import traceback

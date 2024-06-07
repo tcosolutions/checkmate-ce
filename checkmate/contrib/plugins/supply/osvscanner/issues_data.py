@@ -1,6 +1,8 @@
-issues_data = {   'I001': {   'categories': [],
-                'description': '%(issue.data)s',
-                'file': '%(issue.file)s',
-                'line': '%(issue.line)s',
-                'severity': 3,
-                'title': 'Dependency insecurity'}}
+issues_data = {
+    "I001": {
+        "title": "Dependency insecurity",
+        "description": "%(issue.data)s",
+        "severity": 3,
+        "categories": []
+    }
+}

@@ -139,7 +139,8 @@ class Repository(object):
                 read_output()
 
                 if timeout_occured:
-                    self.stderr = self.stderr + ("\n[process timed out after %d seconds]" % int(timeout)).decode('utf-8')
+                    self.stderr += "\n[process timed out after %d seconds]" % int(
+                        timeout)
 
             self.returncode = p.returncode
             return p.returncode, self.stdout
@@ -162,9 +163,10 @@ class Repository(object):
             return self._call(args, kwargs)
 
     def check_output(self, *args, **kwargs):
+        code = os.getenv('CODE_DIR')
+        os.chdir(code)
         returncode, stdout = self._call(args, kwargs, capture_stderr=False)
-        if returncode != 0:
-            raise subprocess.CalledProcessError(returncode, args[0], stdout)
+        subprocess.CalledProcessError(returncode, args[0], stdout)
         return stdout
 
     def add_remote(self, name, url):
@@ -260,7 +262,7 @@ class Repository(object):
                 extra_args.append(branch)
 
             return_code, stdout = self.call(
-                ["git", "fetch", remote]+extra_args, env=env, timeout=14400)
+                ["git", "fetch", remote]+extra_args, env=env, timeout=120)
         finally:
             shutil.rmtree(directory)
 
@@ -533,9 +535,10 @@ class Repository(object):
             return content.decode('utf-8', errors='ignore')
 
     def get_file_content(self, commit_sha, path, decode=False):
+        
         try:
             file_content = self.check_output(
-                ["git", "show", "%s:%s" % (commit_sha, path)])
+                ["git","show", "%s:%s" % (commit_sha, path)])
         except subprocess.CalledProcessError:
             raise IOError
         if decode:

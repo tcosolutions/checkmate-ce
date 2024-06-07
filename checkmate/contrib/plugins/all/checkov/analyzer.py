@@ -18,7 +18,7 @@ class CheckovAnalyzer(BaseAnalyzer):
         super(CheckovAnalyzer, self).__init__(*args, **kwargs)
         try:
             result = subprocess.check_output(
-                ["checkov", "--version"])
+                ["checkov", "--version"],stderr=subprocess.DEVNULL).strip()
         except subprocess.CalledProcessError:
             logger.error(
                 "Cannot initialize checkov analyzer: Executable is missing, please install it.")
@@ -37,19 +37,26 @@ class CheckovAnalyzer(BaseAnalyzer):
             except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
-        f = open(tmpdir+"/"+file_revision.path, "w")
+
+        result = subprocess.check_output(["rsync -r . "+tmpdir+" --exclude .git"],shell=True).strip()
+
+        f = open(tmpdir+"/"+file_revision.path, "wb")
 
         fout = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
         result = {}
         try:
             with f:
-                f.write(file_revision.get_file_content().decode("utf-8"))
+                try:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
+                  pass
             try:
                 result = subprocess.check_output(["checkov",
                                                   "-o",
                                                   "json",
                                                   "--file",
-                                                  f.name])
+                                                  f.name],
+                                                  stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
                 if e.returncode == 1:
                     result = e.output
@@ -58,6 +65,7 @@ class CheckovAnalyzer(BaseAnalyzer):
                     result = []
                     pass
                 else:
+                    #print((e.returncode))
                     result = e.output
                     pass
 
@@ -82,4 +90,4 @@ class CheckovAnalyzer(BaseAnalyzer):
                 pass
 
         finally:
-            return {'issues': issues}
+          return {'issues': issues}

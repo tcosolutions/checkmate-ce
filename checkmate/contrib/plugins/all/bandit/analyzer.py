@@ -17,7 +17,7 @@ class BanditAnalyzer(BaseAnalyzer):
     def __init__(self, *args, **kwargs):
         super(BanditAnalyzer, self).__init__(*args, **kwargs)
         try:
-            result = subprocess.check_output(["bandit", "--version"])
+            result = subprocess.check_output(["bandit", "--version"],stderr=subprocess.DEVNULL).strip()
         except subprocess.CalledProcessError:
             logger.error(
                 "Cannot initialize Bandit analyzer: Executable is missing, please install it.")
@@ -31,12 +31,16 @@ class BanditAnalyzer(BaseAnalyzer):
         f = tempfile.NamedTemporaryFile(delete=False)
         try:
             with f:
-                f.write(file_revision.get_file_content())
+                try:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
+                  pass
             try:
                 result = subprocess.check_output(["bandit",
                                                   f.name,
                                                   "-f",
-                                                  "json"])
+                                                  "json"],
+                                                  stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
                 if e.returncode == 2:
                     result = e.output
@@ -66,6 +70,5 @@ class BanditAnalyzer(BaseAnalyzer):
                     })
 
         finally:
-            #os.unlink(f.name)
-            pass
+            os.unlink(f.name)
         return {'issues': issues}

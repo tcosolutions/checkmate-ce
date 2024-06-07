@@ -9,6 +9,7 @@ import logging
 import six
 import copy
 import hashlib
+from tqdm import tqdm
 
 from checkmate.helpers.issue import group_issues_by_fingerprint
 from checkmate.management.helpers import (filter_filenames_by_analyzers,
@@ -25,6 +26,8 @@ from checkmate.lib.models import (Issue,
 
 from collections import defaultdict
 from functools import reduce
+
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -532,12 +535,22 @@ class CodeEnvironment(object):
 
     def analyze_file_revisions(self, file_revisions):
 
-        five=""
+        try:
+          gpt = os.getenv('OPENAI_GPT_API')
+        except:
+          gpt = ""
+          pass
+    
+        try:
+          privgpt = os.getenv('PRIVATEGPT_URL')
+        except:
+          privgpt = ""
+          pass
 
         filtered_file_revisions = self.filter_file_revisions(file_revisions)
 
-        for file_revision in filtered_file_revisions:
-            logger.info("Analyzing file revision "+file_revision['path'])
+        for file_revision in tqdm(filtered_file_revisions):
+            #logger.info("Analyzing file revision "+file_revision['path'])
             file_revision.language = self.get_language(file_revision)
             one = self.analyze_file_revision(file_revision,
                                                                {analyzer_name: analyzer_params
@@ -553,11 +566,20 @@ class CodeEnvironment(object):
                 four = self.analyze_file_revision(file_revision,{"yara":analyzer_params})
               if(analyzer_name=="gptanalyzer"):
                 five = self.analyze_file_revision(file_revision,{"gptanalyzer":analyzer_params})
+              if(analyzer_name=="privategptanalyzer"):
+                six = self.analyze_file_revision(file_revision,{"privategptanalyzer":analyzer_params})
 
-            if five:
+
+
+            if gpt and len(gpt)>0: 
               file_revision.results = {**one, **two, **three, **four, **five}
+              if privgpt and len(privgpt)>0:
+                   file_revision.results = {**one, **two, **three, **four, **five, **six}
             else:
-              file_revision.results = {**one, **two, **three, **four}
+              if privgpt and len(privgpt)>0:
+                file_revision.results = {**one, **two, **three, **four, **six},   
+              else:
+                file_revision.results = {**one, **two, **three, **four}
 
         return filtered_file_revisions
 
