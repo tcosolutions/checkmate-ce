@@ -2,8 +2,8 @@ pylint
 pyflakes
 chardet
 pep8
-six
+sixOD
 cffi
-git+https://github.com/marcinguy/blitzdb3-ce@master#egg=blitzdb3-ce
+git+https://github.com/marcinguy/blitzdb3-ce@main#egg=blitzdb3-ce
 sqlalchemy
 pyyaml
