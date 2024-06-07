@@ -44,7 +44,6 @@ if not valid:
     'bandit': 'checkmate.contrib.plugins.all.bandit',
     'brakeman': 'checkmate.contrib.plugins.all.brakeman',
     'phpanalyzer':  'checkmate.contrib.plugins.all.progpilot',
-    'gosec':  'checkmate.contrib.plugins.all.gosec',
     'confused': 'checkmate.contrib.plugins.all.confused',
     'pmd': 'checkmate.contrib.plugins.all.pmd',
     'semgrep': 'checkmate.contrib.plugins.all.semgrep',
@@ -70,6 +69,7 @@ if not valid:
     'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
     'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
     'gostaticcheck': 'checkmate.contrib.plugins.all.gostaticcheck',
+    'semgrepcsharpdotnet': 'checkmate.contrib.plugins.all.semgrepcsharpdotnet',
     'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
 
   }
@@ -93,7 +93,6 @@ else:
       'bandit': 'checkmate.contrib.plugins.python.bandit',
       'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
       'phpanalyzer':  'checkmate.contrib.plugins.php.progpilot',
-      'gosec':  'checkmate.contrib.plugins.golang.gosec',
       'confused': 'checkmate.contrib.plugins.supply.confused',
       'pmd': 'checkmate.contrib.plugins.java.pmd',
       'apex': 'checkmate.contrib.plugins.apex.pmdapex',
@@ -119,6 +118,7 @@ else:
       'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
+      'semgrepcsharpdotnet': 'checkmate.contrib.plugins.csharp.semgrepcsharpdotnet',
       'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
     }
   else:
@@ -131,7 +131,6 @@ else:
       'bandit': 'checkmate.contrib.plugins.python.bandit',
       'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
       'phpanalyzer':  'checkmate.contrib.plugins.php.progpilot',
-      'gosec':  'checkmate.contrib.plugins.golang.gosec',
       'confused': 'checkmate.contrib.plugins.supply.confused',
       'pmd': 'checkmate.contrib.plugins.java.pmd',
       'apex': 'checkmate.contrib.plugins.apex.pmdapex',
@@ -157,6 +156,7 @@ else:
       'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
+      'semgrepcsharpdotnet': 'checkmate.contrib.plugins.csharp.semgrepcsharpdotnet',
     }
  
 

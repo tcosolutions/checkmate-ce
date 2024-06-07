@@ -3,4 +3,4 @@ issues_data = {   'I001': {   'categories': [],
                 'file': '%(issue.file)s',
                 'line': '%(issue.line)s',
                 'severity': 3,
-                'title': 'Perl insecurity'}}
+                'title': 'Snyk Open Source'}}

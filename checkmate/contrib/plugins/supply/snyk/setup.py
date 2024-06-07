@@ -1,11 +1,12 @@
-from .analyzer import ConfusedAnalyzer
+from .analyzer import SnykAnalyzer
 from .issues_data import issues_data
 
 analyzers = {
-    'confused':
+    'snyk':
         {
-            'title': 'Confused',
-            'class': ConfusedAnalyzer,
+            'name': 'snyk',
+            'title': 'snyk',
+            'class': SnykAnalyzer,
             'language': 'supply',
             'issues_data': issues_data,
         },
