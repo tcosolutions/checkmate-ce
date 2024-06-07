@@ -719,6 +719,7 @@ osv-scanner - https://github.com/google/osv-scanner
 fluidattack scanner - https://gitlab.com/fluidattacks/universe
 tfsec - https://github.com/aquasecurity/tfsec
 
+
 ==== License for progpilot ====
 
 YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
@@ -1743,6 +1744,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
 
 
