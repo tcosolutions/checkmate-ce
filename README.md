@@ -13,4 +13,4 @@ Checkmate is a cross-language (meta-)tool for static code analysis, written in P
 
 * Checkmate is licensed under the MIT license. To view a copy of this license, visit [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT).
 
-* Original Checkmate's parts remain release under MIT License. However modifications are finally released under AGPL-3.0 license (previously LGPL 2.1 with Commons Cluase). Please refer to LICENSE for more info. 
+* Original Checkmate's parts remain release under MIT License. However modifications are finally released under AGPL-3.0 license (previously LGPL 2.1 with Commons Clause). Please refer to LICENSE for more info. 
