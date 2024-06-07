@@ -220,7 +220,7 @@ class Command(BaseCommand):
 
   <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-  <link href="https://dl.betterscan.io/assets/css/reportstyle.css" rel="stylesheet">
+  <link href="https://dl.betterscan.io/reportstyle.css" rel="stylesheet">
 
 
 
@@ -301,7 +301,7 @@ $('#findings').append("<hr>");
 
 
 
-<p style="margin-bottom: 25px;"><img src="https://dl.betterscan.io/wp-content/uploads/2022/05/logo-nobackground-164x32-1.png" style="position:relative; top:-40px;"></p>
+<p style="margin-bottom: 25px;"><img src="https://dl.betterscan.io/logo.png" style="position:relative; top:-40px;"></p>
 
 <div class="tabbable tabs-left">
     <ul class="nav nav-tabs">
