@@ -90,7 +90,6 @@ if not valid:
     'yara': 'checkmate.contrib.plugins.all.yara',
     'fluidattacksscanner': 'checkmate.contrib.plugins.all.fluidattacksscanner',
     'gostaticcheck': 'checkmate.contrib.plugins.all.gostaticcheck',
-    'semgrepcsharpdotnet': 'checkmate.contrib.plugins.all.semgrepcsharpdotnet',
     'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
 
   }
@@ -138,7 +137,6 @@ else:
       'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'semgrepcsharpdotnet': 'checkmate.contrib.plugins.csharp.semgrepcsharpdotnet',
       'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
       'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
       }
@@ -175,7 +173,6 @@ else:
       'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'semgrepcsharpdotnet': 'checkmate.contrib.plugins.csharp.semgrepcsharpdotnet',
       'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
       }
   else:
@@ -212,7 +209,6 @@ else:
       'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'semgrepcsharpdotnet': 'checkmate.contrib.plugins.csharp.semgrepcsharpdotnet',
       'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
       }
      else:
@@ -248,7 +244,6 @@ else:
       'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'semgrepcsharpdotnet': 'checkmate.contrib.plugins.csharp.semgrepcsharpdotnet',
        }
         
  
