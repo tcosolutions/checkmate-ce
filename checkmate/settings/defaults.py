@@ -67,7 +67,6 @@ if not valid:
     'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
     'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
     'gostaticcheck': 'checkmate.contrib.plugins.all.gostaticcheck',
-    'semgrepcsharpdotnet': 'checkmate.contrib.plugins.all.semgrepcsharpdotnet',
     'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
 
   }
@@ -114,7 +113,6 @@ else:
       'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'semgrepcsharpdotnet': 'checkmate.contrib.plugins.csharp.semgrepcsharpdotnet',
       'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
     }
   else:
@@ -150,7 +148,6 @@ else:
       'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'semgrepcsharpdotnet': 'checkmate.contrib.plugins.csharp.semgrepcsharpdotnet',
     }
  
 
