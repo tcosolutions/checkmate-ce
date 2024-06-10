@@ -4,6 +4,6 @@ chardet
 pep8
 sixOD
 cffi
-git+https://github.com/marcinguy/blitzdb3-ce@main#egg=blitzdb3-ce
+git+https://github.com/topcodersonline-solutions/blitzdb3-ce@main#egg=blitzdb3-ce
 sqlalchemy
 pyyaml
