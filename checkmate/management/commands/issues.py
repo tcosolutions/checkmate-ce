@@ -68,6 +68,8 @@ class Command(BaseCommand):
           valid=0
           pass
 
+        valid=1
+
         if ashtml == 0:
           table = Table(title="Scan Report")
 
