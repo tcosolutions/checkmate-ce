@@ -34,14 +34,14 @@ except:
   privgpt = ""
   pass
 
-if gpt:
-    path = '/root/.config/ptpt'
-    os.system("mkdir -p /root/.config/ptpt")
-    filename = "config.yaml"
-    fullname = os.path.join(path, filename)
-    myfile = open(fullname, "w")
-    myfile.write("api_key: "+gpt)
-    myfile.close()
+#if gpt:
+#    path = '/root/.config/ptpt'
+#    os.system("mkdir -p /root/.config/ptpt")
+#    filename = "config.yaml"
+#    fullname = os.path.join(path, filename)
+#    myfile = open(fullname, "w")
+#    myfile.write("api_key: "+gpt)
+#    myfile.close()
 
 try:
   r = requests.get("https://dl.betterscan.io/auth?licence="+str(lic))
