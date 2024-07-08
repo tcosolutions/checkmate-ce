@@ -217,7 +217,12 @@ class Repository(object):
         return return_code
 
     def _get_ssh_wrapper(self):
-        wrapper = os.path.abspath(__file__+"/..")+"/ssh"
+        # Get the directory of the current file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+        # Construct the full path to the 'ssh' file
+        wrapper = os.path.join(current_dir, 'ssh')
+    
         return wrapper
 
     def _get_ssh_config(self, identity_file):
