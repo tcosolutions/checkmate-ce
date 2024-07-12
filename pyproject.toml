@@ -43,6 +43,17 @@ Homepage = "https://github.com/tcosolutions/checkmate-ce"
 packages = ["find:"]
 zip_safe = false
 
+[tool.poetry]
+name = "checkmate3"
+version = "0.2.0"
+description = "A meta-code checker written in Python."
+readme = "README.md"
+license = { text = "AGPL-3.0" }
+authors = [
+  { name = "Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)", email = "andreas@quantifiedcode.com" },
+  { name = "Marcin Kozlowski", email = "marcinguy@gmail.com" }
+]
+
 [tool.setuptools.entry-points.console_scripts]
 checkmate = "checkmate.scripts.manage:main"
 
