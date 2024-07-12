@@ -29,11 +29,10 @@ setup(name='checkmate3',
       author_email='andreas@quantifiedcode.com',
       license='MIT',
 install_requires = [
-'blitzdb3_ce==4.0.0',
+'blitzdb3_ce==1.0.0',
 'pylint',
 'pyflakes',
 'pep8',
-'six',
 'chardet',
 'pyyaml',
 'sqlalchemy'
