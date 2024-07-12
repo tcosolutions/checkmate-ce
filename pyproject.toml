@@ -36,7 +36,7 @@ dependencies = [
 dynamic = ["urls"]
 
 [project.urls]
-Homepage = "https://github.com/marcinguy/checkmate-ce"
+Homepage = "https://github.com/tcosolutions/checkmate-ce"
 
 [tool.setuptools]
 packages = ["find:"]
