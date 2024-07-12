@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "checkmate3"
+version = "0.2.0"
+description = "A meta-code checker written in Python."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+  { name = "Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)", email = "andreas@quantifiedcode.com" }
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Software Development :: Quality Assurance"
+]
+dependencies = [
+  "blitzdb3_ce==1.0.0",
+  "pylint",
+  "pyflakes",
+  "pep8",
+  "chardet",
+  "pyyaml",
+  "sqlalchemy"
+]
+dynamic = ["urls"]
+
+[project.urls]
+Homepage = "https://github.com/marcinguy/checkmate-ce"
+
+[tool.setuptools]
+packages = ["find:"]
+zip_safe = false
+
+[tool.setuptools.entry-points.console_scripts]
+checkmate = "checkmate.scripts.manage:main"
+
