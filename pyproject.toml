@@ -9,7 +9,8 @@ description = "A meta-code checker written in Python."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
-  { name = "Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)", email = "andreas@quantifiedcode.com" }
+  { name = "Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)", email = "andreas@quantifiedcode.com" },
+  { name = "Marcin Kozlowski", email = "marcinguy@gmail.com" }
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
