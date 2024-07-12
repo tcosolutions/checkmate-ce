@@ -39,14 +39,14 @@ install_requires = [
 'sqlalchemy'
 ],
 dependency_links=[
-      'https://github.com/marcinguy/blitzdb3-ce/archive/refs/tags/v4.0.0.tar.gz#egg=blitzdb3_ce-4.0.0',
+      'https://github.com/tcosolutions/blitzdb3-ce/archive/refs/tags/v1.0.0.tar.gz#egg=blitzdb3_ce-1.0.0',
 ],
       entry_points={
           'console_scripts': [
               'checkmate = checkmate.scripts.manage:main',
           ],
       },
-      url='https://github.com/marcinguy/checkmate-ce',
+      url='https://github.com/tcosolutions/checkmate-ce',
       packages=find_packages(),
       zip_safe=False,
       description='A meta-code checker written in Python.',
@@ -58,12 +58,12 @@ to provide clear, actionable insights to the user.
 Documentation
 =============
 
-The documentation can be found `here <https://github.com/marcinguy/checkmate-ce>`.
+The documentation can be found `here <https://github.com/tcosolutions/checkmate-ce>`.
 
 Source Code
 ===========
 
-The source code can be found on `Github <https://github.com/marcinguy/checkmate-ce>`.
+The source code can be found on `Github <https://github.com/tcosolutions/checkmate-ce>`.
 
 Changelog
 =========
