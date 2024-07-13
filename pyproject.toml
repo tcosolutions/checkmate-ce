@@ -9,7 +9,7 @@ description = "A meta-code checker written in Python."
 readme = "README.md"
 license = { text = "AGPL-3.0" }
 authors = [
-  "Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)",
+  "Andreas Dewes",
   "Marcin Kozlowski"
 ]
 classifiers = [
@@ -50,8 +50,8 @@ description = "A meta-code checker written in Python."
 readme = "README.md"
 license = "AGPL-3.0"  # Corrected this line
 authors = [
-  { name = "Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)", email = "andreas@quantifiedcode.com" },
-  { name = "Marcin Kozlowski", email = "marcinguy@gmail.com" }
+  { name = "Andreas" },
+  { name = "Marcin Kozlowski"}
 ]
 
 [tool.setuptools.entry-points.console_scripts]
