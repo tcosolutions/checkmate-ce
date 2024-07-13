@@ -28,29 +28,11 @@ except:
   gpt = ""
   pass
 
-try:
-  privgpt = os.getenv('PRIVATEGPT_URL')
-except:
-  privgpt = ""
-  pass
-
 #if gpt:
 #    path = '/root/.config/ptpt'
 #    os.system("mkdir -p /root/.config/ptpt")
 #    filename = "config.yaml"
-#    fullname = os.path.join(path, filename)
-#    myfile = open(fullname, "w")
-#    myfile.write("api_key: "+gpt)
-#    myfile.close()
-
-try:
-  r = requests.get("https://dl.betterscan.io/auth?licence="+str(lic))
-  if(r.content.decode("utf-8")=="OK"):
-    valid=1
-  valid=1
-except:
-  valid=0
-  pass
+#    ful
 
 
 if not valid:
@@ -76,7 +58,17 @@ if not valid:
     'graudit': 'checkmate.contrib.plugins.all.graudit',
     'text4shell': 'checkmate.contrib.plugins.all.text4shell',
     'yara': 'checkmate.contrib.plugins.all.yara',
-    #'fluidattacksscanner': 'checkmate.contrib.plugins.all.fluidattacksscanner',
+
+    #'fluidattackscsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
+    #'fluidattacksgolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
+    #'fluidattacksjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
+    #'fluidattacksjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
+    #'fluidattacksswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
+    #'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
+    #'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+    
+    #'fluidattacksscanner': 'checkmate.contrib.plugins.all.fluidattacksscanner'
+    
     'gostaticcheck': 'checkmate.contrib.plugins.all.gostaticcheck',
     'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
 
@@ -116,6 +108,13 @@ else:
       'semgrepeslint': 'checkmate.contrib.plugins.javascript.semgrepeslint',
       'graudit': 'checkmate.contrib.plugins.perl.graudit',
       'text4shell': 'checkmate.contrib.plugins.cve.text4shell',
+      #'fluidattackscsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
+      #'fluidattacksgolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
+      #'fluidattacksjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
+      #'fluidattacksjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
+      #'fluidattacksswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
+      #'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
+      #'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',=
       #'fluidattacksscannercsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
       #'fluidattacksscannergolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
       #'fluidattacksscannerjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
@@ -186,6 +185,15 @@ else:
       'semgrepeslint': 'checkmate.contrib.plugins.javascript.semgrepeslint',
       'graudit': 'checkmate.contrib.plugins.perl.graudit',
       'text4shell': 'checkmate.contrib.plugins.cve.text4shell',
+
+      #'fluidattackscsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
+      #'fluidattacksgolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
+      #'fluidattacksjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
+      #'fluidattacksjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
+      #'fluidattacksswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
+      #'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
+      #'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+         
       #'fluidattacksscannercsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
       #'fluidattacksscannergolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
       #'fluidattacksscannerjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
@@ -193,6 +201,7 @@ else:
       #'fluidattacksscannerswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
       #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
       'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
       }
