@@ -48,6 +48,3 @@ description = "A meta-code checker written in Python."
 readme = "README.md"
 license = "AGPL-3.0"  # Corrected this line
 
-
-[tool.setuptools.entry-points.console_scripts]
-checkmate = "checkmate.scripts.manage:main"
