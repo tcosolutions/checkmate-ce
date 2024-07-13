@@ -9,8 +9,8 @@ description = "A meta-code checker written in Python."
 readme = "README.md"
 license = { text = "AGPL-3.0" }
 authors = [
-  { name = "Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)", email = "andreas@quantifiedcode.com" },
-  { name = "Marcin Kozlowski", email = "marcinguy@gmail.com" }
+  "Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)",
+  "Marcin Kozlowski"
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
