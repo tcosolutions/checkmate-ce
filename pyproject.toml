@@ -8,10 +8,8 @@ version = "0.2.0"
 description = "A meta-code checker written in Python."
 readme = "README.md"
 license = { text = "AGPL-3.0" }
-authors = [
-  "Andreas"
-  
-]
+authors = "Andreas"
+
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
@@ -49,9 +47,8 @@ version = "0.2.0"
 description = "A meta-code checker written in Python."
 readme = "README.md"
 license = { text = "AGPL-3.0" }
-authors = [
-  { name = "Andreas" }
-]
+authors = name = "Andreas" 
+
 
 [tool.setuptools.entry-points.console_scripts]
 checkmate = "checkmate.scripts.manage:main"
