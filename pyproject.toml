@@ -46,5 +46,6 @@ name = "checkmate3"
 version = "0.2.0"
 description = "A meta-code checker written in Python."
 readme = "README.md"
+
 license = "AGPL-3.0"  # Corrected this line
 

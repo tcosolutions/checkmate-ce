@@ -14,7 +14,6 @@ import os.path
 import copy
 import json
 import time
-
 import logging
 
 logger = logging.getLogger(__name__)
@@ -30,7 +29,7 @@ class Command(BaseCommand):
         file_revisions = self.project.get_disk_file_revisions()
         logger.info("%d file revisions" % len(file_revisions))
 
-        snapshot = self.project.DiskSnapshot({'created_at': time.time()})
+        snapshot = self.project.GitSnapshot({'created_at': time.time()})
 
         try:
             code_environment = CodeEnvironment(self.project,

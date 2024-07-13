@@ -25,12 +25,16 @@ class Trufflehog3Analyzer(BaseAnalyzer):
         f = tempfile.NamedTemporaryFile(delete=False)
         try:
             with f:
-                f.write(file_revision.get_file_content())
+                try:
+                  f.write(file_revision.get_file_content())
+                except UnicodeDecodeError:
+                  pass
             try:
                 result = subprocess.check_output(["/usr/local/bin/trufflehog3",
                                                   "-f", "json",
-                                                  "-r", "/srv/scanmycode/rules.json",
-                                                  f.name])
+                                                  "-r", "/srv/betterscan/rules.json",
+                                                  f.name],
+                                                  stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
                 if e.returncode == 2:
                     result = e.output
@@ -46,13 +50,9 @@ class Trufflehog3Analyzer(BaseAnalyzer):
                 pass
 
             for issue in json_result:
-                
-                line = issue['line']
-                if line == 0:
-                  line = 1
 
-                location = (((line, None),
-                             (line, None)),)
+                location = (((issue['line'], None),
+                             (issue['line'], None)),)
 
                 issues.append({
                     'code': issue['reason'],

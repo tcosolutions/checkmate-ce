@@ -1,1 +1,6 @@
-issues_data = {}
+# -*- coding: utf-8 -*-
+
+
+issues_data = {
+
+}

@@ -38,7 +38,7 @@ class KubescapeAnalyzer(BaseAnalyzer):
                 if exc.errno != errno.EEXIST:
                     raise
 
-        #result = subprocess.check_output(["rsync . "+tmpdir+" --exclude .git"],shell=True).strip()
+        result = subprocess.check_output(["rsync -r . "+tmpdir+" --exclude .git"],shell=True).strip()
                                         
         f = open(tmpdir+"/"+file_revision.path, "wb")
 
@@ -84,13 +84,24 @@ class KubescapeAnalyzer(BaseAnalyzer):
             try:
 
                 for issue in json_result['results']:
-                  for control in issue['controls']: 
+                  for control in issue['controls']:
+                    controlkey = control['controlID']
+                    sev = json_result['summaryDetails']['controls'][controlkey]['scoreFactor']
+                    if sev>=7:
+                      severity = "High"
+                    elif sev>=4 and sev>=6:
+                      severity = "Medium"
+                    else:
+                      severity = "Warning"
+    
+ 
                     line = 1
                     location = (((line, None),
                                  (line, None)),)
 
                     issues.append({
                             'code': control['controlID'],
+                            'severity': severity,
                             'location': location,
                             'data': control['name'],
                             'file': file_revision.path,

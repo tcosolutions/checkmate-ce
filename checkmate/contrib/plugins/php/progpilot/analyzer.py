@@ -69,6 +69,5 @@ class ProgpilotAnalyzer(BaseAnalyzer):
                 })
 
         finally:
-            #os.unlink(f.name)
-            pass
+            os.unlink(f.name)
         return {'issues': issues}

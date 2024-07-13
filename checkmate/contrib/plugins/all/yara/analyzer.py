@@ -62,7 +62,9 @@ class YaraAnalyzer(BaseAnalyzer):
 
             except KeyError:
                 pass
+
+
+
         except:
             pass
-
         return {'issues': issues}

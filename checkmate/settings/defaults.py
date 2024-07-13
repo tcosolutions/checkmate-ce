@@ -1,10 +1,9 @@
 from checkmate.lib.stats.helpers import directory_splitter
 from checkmate.lib.models import (Project,
                                   Snapshot,
-                                  DiskSnapshot,
                                   FileRevision,
                                   Issue)
-
+from checkmate.contrib.plugins.git.models import GitSnapshot
 from collections import defaultdict
 import requests
 import os
@@ -17,7 +16,11 @@ Default settings values
 
 hooks = defaultdict(list)
 
-valid=1
+try:
+  lic = os.getenv('LIC')
+except:
+  lic = ""
+  pass
 
 try:
   gpt = os.getenv('OPENAI_GPT_API')
@@ -29,10 +32,7 @@ except:
 #    path = '/root/.config/ptpt'
 #    os.system("mkdir -p /root/.config/ptpt")
 #    filename = "config.yaml"
-#    fullname = os.path.join(path, filename)
-#    myfile = open(fullname, "w")
-#    myfile.write("api_key: "+gpt)
-#    myfile.close()
+#    ful
 
 
 if not valid:
@@ -58,6 +58,7 @@ if not valid:
     'graudit': 'checkmate.contrib.plugins.all.graudit',
     'text4shell': 'checkmate.contrib.plugins.all.text4shell',
     'yara': 'checkmate.contrib.plugins.all.yara',
+
     #'fluidattackscsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
     #'fluidattacksgolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
     #'fluidattacksjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
@@ -65,6 +66,9 @@ if not valid:
     #'fluidattacksswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
     #'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
     #'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+    
+    #'fluidattacksscanner': 'checkmate.contrib.plugins.all.fluidattacksscanner'
+    
     'gostaticcheck': 'checkmate.contrib.plugins.all.gostaticcheck',
     'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
 
@@ -74,13 +78,14 @@ if not valid:
   language_patterns = {
     'all': {
         'name': 'All',
-        'patterns': [u'\.none$'],
+        'patterns': ['\.*$'],
     },
   }
 
 else:
   if gpt:
-    plugins = {
+    if privgpt:
+      plugins = {
       'git': 'checkmate.contrib.plugins.git',
       'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
@@ -109,12 +114,20 @@ else:
       #'fluidattacksjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
       #'fluidattacksswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
       #'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
-      #'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+      #'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',=
+      #'fluidattacksscannercsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
+      #'fluidattacksscannergolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
+      #'fluidattacksscannerjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
+      #'fluidattacksscannerjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
+      #'fluidattacksscannerswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
+      #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
+      #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
       'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
-    }
-  else:
-    plugins = {
+      'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
+      }
+    else:
+      plugins = {
       'git': 'checkmate.contrib.plugins.git',
       'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
@@ -137,6 +150,42 @@ else:
       'semgrepeslint': 'checkmate.contrib.plugins.javascript.semgrepeslint',
       'graudit': 'checkmate.contrib.plugins.perl.graudit',
       'text4shell': 'checkmate.contrib.plugins.cve.text4shell',
+      #'fluidattacksscannercsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
+      #'fluidattacksscannergolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
+      #'fluidattacksscannerjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
+      #'fluidattacksscannerjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
+      #'fluidattacksscannerswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
+      #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
+      #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+      'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
+      'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
+      }
+  else:
+     if privgpt:
+       plugins = {
+      'git': 'checkmate.contrib.plugins.git',
+      'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
+      'trojansource': 'checkmate.contrib.plugins.all.trojansource',
+      'yara': 'checkmate.contrib.plugins.all.yara',
+      'metrics': 'checkmate.contrib.plugins.all.metrics',
+      'bandit': 'checkmate.contrib.plugins.python.bandit',
+      'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
+      'phpanalyzer':  'checkmate.contrib.plugins.php.progpilot',
+      #'pmd': 'checkmate.contrib.plugins.java.pmd',
+      #'apex': 'checkmate.contrib.plugins.apex.pmdapex',
+      'semgrep': 'checkmate.contrib.plugins.java.semgrep',
+      #'checkov': 'checkmate.contrib.plugins.iac.checkov',
+      'tfsec': 'checkmate.contrib.plugins.iac.tfsec',
+      'kubescape': 'checkmate.contrib.plugins.iac.kubescape',
+      #'insidersecswift': 'checkmate.contrib.plugins.swift.insidersecswift',
+      #'insiderseckotlin': 'checkmate.contrib.plugins.kotlin.insiderseckotlin',
+      #'insiderseccsharp': 'checkmate.contrib.plugins.csharp.insiderseccsharp',
+      #'pmdapex': 'checkmate.contrib.plugins.apex.pmdapex',
+      'semgrepjava': 'checkmate.contrib.plugins.java.semgrepjava',
+      'semgrepeslint': 'checkmate.contrib.plugins.javascript.semgrepeslint',
+      'graudit': 'checkmate.contrib.plugins.perl.graudit',
+      'text4shell': 'checkmate.contrib.plugins.cve.text4shell',
+
       #'fluidattackscsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
       #'fluidattacksgolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
       #'fluidattacksjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
@@ -144,8 +193,52 @@ else:
       #'fluidattacksswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
       #'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       #'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+         
+      #'fluidattacksscannercsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
+      #'fluidattacksscannergolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
+      #'fluidattacksscannerjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
+      #'fluidattacksscannerjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
+      #'fluidattacksscannerswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
+      #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
+      #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-    }
+      'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
+      }
+     else:
+      plugins = {
+      'git': 'checkmate.contrib.plugins.git',
+      'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
+      'trojansource': 'checkmate.contrib.plugins.all.trojansource',
+      'yara': 'checkmate.contrib.plugins.all.yara',
+      'metrics': 'checkmate.contrib.plugins.all.metrics',
+      'bandit': 'checkmate.contrib.plugins.python.bandit',
+      'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
+      'phpanalyzer':  'checkmate.contrib.plugins.php.progpilot',
+      #'pmd': 'checkmate.contrib.plugins.java.pmd',
+      #'apex': 'checkmate.contrib.plugins.apex.pmdapex',
+      'semgrep': 'checkmate.contrib.plugins.java.semgrep',
+      #'checkov': 'checkmate.contrib.plugins.iac.checkov',
+      'tfsec': 'checkmate.contrib.plugins.iac.tfsec',
+      'kubescape': 'checkmate.contrib.plugins.iac.kubescape',
+      #'insidersecswift': 'checkmate.contrib.plugins.swift.insidersecswift',
+      #'insiderseckotlin': 'checkmate.contrib.plugins.kotlin.insiderseckotlin',
+      #'insiderseccsharp': 'checkmate.contrib.plugins.csharp.insiderseccsharp',
+      #'pmdapex': 'checkmate.contrib.plugins.apex.pmdapex',
+      'semgrepjava': 'checkmate.contrib.plugins.java.semgrepjava',
+      'semgrepeslint': 'checkmate.contrib.plugins.javascript.semgrepeslint',
+      'graudit': 'checkmate.contrib.plugins.perl.graudit',
+      'text4shell': 'checkmate.contrib.plugins.cve.text4shell',
+      #'fluidattacksscannercsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
+      #'fluidattacksscannergolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
+      #'fluidattacksscannerjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
+      #'fluidattacksscannerjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
+      #'fluidattacksscannerswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
+      #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
+      #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
+      'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
+       }
+        
  
 
   language_patterns = {
@@ -218,7 +311,7 @@ else:
      },
      'all': {
         'name': 'All',
-        'patterns': [u'\.none$'],
+        'patterns': [u'.*\.*$'],
      },
   }
 
@@ -244,7 +337,7 @@ commands = {
 models = {
     'Project': Project,
     'Snapshot': Snapshot,
-    'DiskSnapshot': DiskSnapshot,
+    'GitSnapshot': GitSnapshot,
     'FileRevision': FileRevision,
     'Issue': Issue,
 }
