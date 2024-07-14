@@ -16,23 +16,8 @@ Default settings values
 
 hooks = defaultdict(list)
 
-try:
-  lic = os.getenv('LIC')
-except:
-  lic = ""
-  pass
 
-try:
-  gpt = os.getenv('OPENAI_GPT_API')
-except:
-  gpt = ""
-  pass
 
-#if gpt:
-#    path = '/root/.config/ptpt'
-#    os.system("mkdir -p /root/.config/ptpt")
-#    filename = "config.yaml"
-#    ful
 
 
 if not valid:
@@ -57,7 +42,7 @@ if not valid:
     'semgrepeslint': 'checkmate.contrib.plugins.all.semgrepeslint',
     'graudit': 'checkmate.contrib.plugins.all.graudit',
     'text4shell': 'checkmate.contrib.plugins.all.text4shell',
-    'yara': 'checkmate.contrib.plugins.all.yara',
+    #'yara': 'checkmate.contrib.plugins.all.yara',
 
     #'fluidattackscsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
     #'fluidattacksgolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
@@ -70,7 +55,7 @@ if not valid:
     #'fluidattacksscanner': 'checkmate.contrib.plugins.all.fluidattacksscanner'
     
     'gostaticcheck': 'checkmate.contrib.plugins.all.gostaticcheck',
-    'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
+    #'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
 
   }
 
@@ -89,7 +74,7 @@ else:
       'git': 'checkmate.contrib.plugins.git',
       'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
-      'yara': 'checkmate.contrib.plugins.all.yara',
+      #'yara': 'checkmate.contrib.plugins.all.yara',
       'metrics': 'checkmate.contrib.plugins.all.metrics',
       'bandit': 'checkmate.contrib.plugins.python.bandit',
       'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
@@ -123,15 +108,15 @@ else:
       #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
-      'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
+      #'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
+      #'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
       }
     else:
       plugins = {
       'git': 'checkmate.contrib.plugins.git',
       'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
-      'yara': 'checkmate.contrib.plugins.all.yara',
+      #'yara': 'checkmate.contrib.plugins.all.yara',
       'metrics': 'checkmate.contrib.plugins.all.metrics',
       'bandit': 'checkmate.contrib.plugins.python.bandit',
       'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
@@ -158,7 +143,7 @@ else:
       #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
       #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
+      #'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
       }
   else:
      if privgpt:
@@ -166,7 +151,7 @@ else:
       'git': 'checkmate.contrib.plugins.git',
       'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
-      'yara': 'checkmate.contrib.plugins.all.yara',
+      #'yara': 'checkmate.contrib.plugins.all.yara',
       'metrics': 'checkmate.contrib.plugins.all.metrics',
       'bandit': 'checkmate.contrib.plugins.python.bandit',
       'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
@@ -203,14 +188,14 @@ else:
       #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
 
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
+      #'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
       }
      else:
       plugins = {
       'git': 'checkmate.contrib.plugins.git',
       'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
-      'yara': 'checkmate.contrib.plugins.all.yara',
+      #'yara': 'checkmate.contrib.plugins.all.yara',
       'metrics': 'checkmate.contrib.plugins.all.metrics',
       'bandit': 'checkmate.contrib.plugins.python.bandit',
       'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
