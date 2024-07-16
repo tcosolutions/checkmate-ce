@@ -23,7 +23,7 @@ hooks = defaultdict(list)
 if not valid:
   plugins = {
     'git': 'checkmate.contrib.plugins.git',
-    'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
+    #'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
     'trojansource': 'checkmate.contrib.plugins.all.trojansource',
     'metrics': 'checkmate.contrib.plugins.all.metrics',
     'bandit': 'checkmate.contrib.plugins.all.bandit',
@@ -72,7 +72,7 @@ else:
     if privgpt:
       plugins = {
       'git': 'checkmate.contrib.plugins.git',
-      'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
+      #'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
       #'yara': 'checkmate.contrib.plugins.all.yara',
       'metrics': 'checkmate.contrib.plugins.all.metrics',
@@ -114,7 +114,7 @@ else:
     else:
       plugins = {
       'git': 'checkmate.contrib.plugins.git',
-      'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
+      #'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
       #'yara': 'checkmate.contrib.plugins.all.yara',
       'metrics': 'checkmate.contrib.plugins.all.metrics',
@@ -149,7 +149,7 @@ else:
      if privgpt:
        plugins = {
       'git': 'checkmate.contrib.plugins.git',
-      'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
+      #'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
       #'yara': 'checkmate.contrib.plugins.all.yara',
       'metrics': 'checkmate.contrib.plugins.all.metrics',
@@ -193,7 +193,7 @@ else:
      else:
       plugins = {
       'git': 'checkmate.contrib.plugins.git',
-      'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
+      #'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
       'trojansource': 'checkmate.contrib.plugins.all.trojansource',
       #'yara': 'checkmate.contrib.plugins.all.yara',
       'metrics': 'checkmate.contrib.plugins.all.metrics',
