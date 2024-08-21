@@ -8,7 +8,6 @@ version = "0.2.0"
 description = "A meta-code checker written in Python."
 readme = "README.md"
 license = { text = "AGPL-3.0" }
-authors = [ "adewes" , "marcinguy" ]
 
 
 classifiers = [
@@ -33,21 +32,16 @@ dependencies = [
   "pyyaml",
   "sqlalchemy"
 ]
-dynamic = ["urls"]
 
 [project.urls]
 Homepage = "https://github.com/tcosolutions/checkmate-ce"
 
 [tool.setuptools]
-packages = ["find:"]
-zip_safe = false
 
 [tool.poetry]
 name = "checkmate3"
 version = "0.2.0"
 description = "A meta-code checker written in Python."
 readme = "README.md"
-authors = [ "adewes" , "marcinguy" ]
 
 license = "AGPL-3.0"  # Corrected this line
-
