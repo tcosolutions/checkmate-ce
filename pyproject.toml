@@ -1,15 +1,14 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[project]
+[tool.poetry]
 name = "checkmate3"
 version = "0.2.0"
 description = "A meta-code checker written in Python."
 readme = "README.md"
-license = { text = "AGPL-3.0" }
-authors = [ "adewes" , "marcinguy" ]
-
+license = "AGPL-3.0"
+authors = ["adewes", "marcinguy"]
 
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -24,6 +23,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Topic :: Software Development :: Quality Assurance"
 ]
+
 dependencies = [
   "blitzdb3_ce==1.0.0",
   "pylint",
@@ -34,15 +34,5 @@ dependencies = [
   "sqlalchemy"
 ]
 
-[project.urls]
-Homepage = "https://github.com/tcosolutions/checkmate-ce"
-
-[tool.setuptools]
-
-[tool.poetry]
-name = "checkmate3"
-version = "0.2.0"
-description = "A meta-code checker written in Python."
-readme = "README.md"
-
-license = "AGPL-3.0"  # Corrected this line
+[tool.poetry.urls]
+homepage = "https://github.com/tcosolutions/checkmate-ce"
