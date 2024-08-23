@@ -25,7 +25,7 @@ classifiers = [
 ]
 
 dependencies = [
-  "blitzdb3_ce==1.0.0",
+  "blitzdb3-ce==4.0.0",
   "pylint",
   "pyflakes",
   "pep8",
