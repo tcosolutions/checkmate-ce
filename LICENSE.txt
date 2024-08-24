@@ -691,7 +691,7 @@ Licensor: Marcin Kozlowski
 
 This project uses several Open Source programs and code with effort made to respect licensing requirements
 
-Bandit, Brakeman, gostaticcheck, semgrep, trufflehog3, truffleHogRegexes, log4shell via custom semgrep rule, kubescape, graudit, find sec bugs, YARA, tfsec and other(s). Please refer to licensing for each project (as they are named)
+Bandit, Brakeman, gostaticcheck, semgrep, trufflehog3, truffleHogRegexes, log4shell via custom semgrep rule, kubescape, graudit, find sec bugs, eslint, YARA, tfsec and other(s). Please refer to licensing for each project (as they are named)
 
 License links (LICENSE or .md or .txt or similar file in repository) and source code for each. Feel free to contact me for link to the source code and LICENSE file when needed.
 
@@ -704,6 +704,7 @@ truffleHogRegexes - https://github.com/dxa4481/truffleHogRegexes
 kubescape - https://github.com/kubescape/kubescape
 graudit - https://github.com/tcosolutions/graudit-ce
 find sec bugs - https://github.com/find-sec-bugs/find-sec-bugs
+eslint - https://github.com/eslint/eslint
 yara - https://github.com/VirusTotal/yara
 tfsec - https://github.com/aquasecurity/tfsec
 
@@ -4042,6 +4043,29 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
 ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+==== License for eslint ====
+Copyright OpenJS Foundation and other contributors, <www.openjsf.org>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
 
 
 
