@@ -6,16 +6,8 @@ Home-page: https://github.com/tcosolutions/checkmate-ce
 Author: Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)
 Author-email: andreas@quantifiedcode.com
 License: AGPL-3.0
-Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Developers
-Classifier: License :: OSI Approved :: AGPL-3.0
 Classifier: Programming Language :: Python
-Classifier: Programming Language :: Python :: 3
-Classifier: Programming Language :: Python :: 3.6
-Classifier: Programming Language :: Python :: 3.7
-Classifier: Programming Language :: Python :: 3.8
-Classifier: Programming Language :: Python :: 3.9
-Classifier: Programming Language :: Python :: 3.10
 Classifier: Topic :: Software Development :: Quality Assurance
 Description-Content-Type: text/markdown
 License-File: LICENSE.txt
