@@ -4,11 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "checkmate3"
-version = "0.2.0"
+version = "0.2.1"
 description = "A meta-code checker written in Python."
 readme = "README.md"
 license = { text = "AGPL-3.0" }
-authors = [ "adewes" , "marcinguy" ]
 
 
 classifiers = [
@@ -25,7 +24,7 @@ classifiers = [
   "Topic :: Software Development :: Quality Assurance"
 ]
 dependencies = [
-  "blitzdb3_ce==4.0.0",
+  "blitzdb3_ce",
   "pylint",
   "pyflakes",
   "pep8",
@@ -33,20 +32,5 @@ dependencies = [
   "pyyaml",
   "sqlalchemy"
 ]
-dynamic = ["urls"]
 
-[project.urls]
-Homepage = "https://github.com/tcosolutions/checkmate-ce"
 
-[tool.setuptools]
-packages = ["find:"]
-zip_safe = false
-
-[tool.poetry]
-name = "checkmate3"
-version = "0.2.0"
-description = "A meta-code checker written in Python."
-readme = "README.md"
-authors = [ "adewes" , "marcinguy" ]
-
-license = "AGPL-3.0" 

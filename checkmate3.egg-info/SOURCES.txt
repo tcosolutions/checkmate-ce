@@ -1,6 +1,9 @@
-LICENSE
-README.md
+CHANGELOG.txt
+LICENSE.txt
+MANIFEST.in
+README.txt
 pyproject.toml
+requirements.txt
 setup.py
 checkmate/__init__.py
 checkmate/__main__.py
@@ -114,7 +117,6 @@ checkmate/settings/defaults.py
 checkmate3.egg-info/PKG-INFO
 checkmate3.egg-info/SOURCES.txt
 checkmate3.egg-info/dependency_links.txt
-checkmate3.egg-info/entry_points.txt
 checkmate3.egg-info/not-zip-safe
 checkmate3.egg-info/requires.txt
 checkmate3.egg-info/top_level.txt

@@ -1,4 +1,4 @@
-blitzdb3_ce==1.0.0
+blitzdb3_ce
 pylint
 pyflakes
 pep8
