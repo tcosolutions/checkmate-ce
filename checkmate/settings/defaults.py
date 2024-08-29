@@ -22,44 +22,16 @@ hooks = defaultdict(list)
 
 plugins = {
       'git': 'checkmate.contrib.plugins.git',
-      #'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
-      'trojansource': 'checkmate.contrib.plugins.all.trojansource',
-      #'yara': 'checkmate.contrib.plugins.all.yara',
-      'metrics': 'checkmate.contrib.plugins.all.metrics',
       'bandit': 'checkmate.contrib.plugins.python.bandit',
       'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
-      #'phpanalyzer':  'checkmate.contrib.plugins.php.progpilot',
-      #'pmd': 'checkmate.contrib.plugins.java.pmd',
-      #'apex': 'checkmate.contrib.plugins.apex.pmdapex',
       'semgrep': 'checkmate.contrib.plugins.java.semgrep',
-      #'checkov': 'checkmate.contrib.plugins.iac.checkov',
       'tfsec': 'checkmate.contrib.plugins.iac.tfsec',
       'kubescape': 'checkmate.contrib.plugins.iac.kubescape',
-      #'insidersecswift': 'checkmate.contrib.plugins.swift.insidersecswift',
-      #'insiderseckotlin': 'checkmate.contrib.plugins.kotlin.insiderseckotlin',
-      #'insiderseccsharp': 'checkmate.contrib.plugins.csharp.insiderseccsharp',
-      #'pmdapex': 'checkmate.contrib.plugins.apex.pmdapex',
       'semgrepjava': 'checkmate.contrib.plugins.java.semgrepjava',
       'semgrepeslint': 'checkmate.contrib.plugins.javascript.semgrepeslint',
       'graudit': 'checkmate.contrib.plugins.perl.graudit',
       'text4shell': 'checkmate.contrib.plugins.cve.text4shell',
-      #'fluidattackscsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
-      #'fluidattacksgolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
-      #'fluidattacksjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
-      #'fluidattacksjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
-      #'fluidattacksswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
-      #'fluidattackskotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
-      #'fluidattackspython': 'checkmate.contrib.plugins.python.fluidattacksscanner',=
-      #'fluidattacksscannercsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
-      #'fluidattacksscannergolang': 'checkmate.contrib.plugins.golang.fluidattacksscanner',
-      #'fluidattacksscannerjava': 'checkmate.contrib.plugins.java.fluidattacksscanner',
-      #'fluidattacksscannerjavascript': 'checkmate.contrib.plugins.javascript.fluidattacksscanner',
-      #'fluidattacksscannerswift': 'checkmate.contrib.plugins.swift.fluidattacksscanner',
-      #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
-      #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
       'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-      #'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
-      #'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
       }
         
  
@@ -95,10 +67,7 @@ plugins = {
           'name' : 'IaC',
           'patterns' : [u'\.yml$',u'\.yaml$',u'Dockerfile$',u'\.tf$'],
      },
-     'all': {
-        'name': 'All',
-        'patterns': [u'.*\.*$'],
-     },
+  
   }
 
 
