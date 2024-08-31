@@ -16,7 +16,7 @@ hooks = defaultdict(list)
 plugins = {
     'git': 'checkmate.contrib.plugins.git',
     #'trufflehog3':  'checkmate.contrib.plugins.all.trufflehog3',
-    'trojansource': 'checkmate.contrib.plugins.all.trojansource',
+    #'trojansource': 'checkmate.contrib.plugins.all.trojansource',
     #'yara': 'checkmate.contrib.plugins.all.yara',
     #'metrics': 'checkmate.contrib.plugins.all.metrics',
     'bandit': 'checkmate.contrib.plugins.python.bandit',
