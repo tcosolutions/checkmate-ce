@@ -61,15 +61,13 @@ def load_command_class(settings):
             sys.stderr.write("Unknown command: %s\n" % " ".join(command_chain))
             exit(-1)
         if not isinstance(current_commands[cmd], dict):
-            # it is a module/class string
-            if isinstance(current_commands[cmd], six.string_types):
-                command_module_name, command_class_name = current_commands[cmd].rsplit(
-                    ".", 1)
+            if isinstance(current_commands[cmd], str):
+                command_module_name, command_class_name = current_commands[cmd].rsplit(".", 1)
                 command_module = importlib.import_module(command_module_name)
                 return getattr(command_module, command_class_name), command_chain
-            else:  # it is a class
-                return current_commands[cmd], command_chain
-        current_commands = current_commands[cmd]
+        else:  # it is a class
+            return current_commands[cmd], command_chain
+    current_commands = current_commands[cmd]
 
 
 def main():
