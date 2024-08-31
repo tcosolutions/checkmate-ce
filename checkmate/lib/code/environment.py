@@ -6,7 +6,6 @@ import re
 import time
 import traceback
 import logging
-import six
 import copy
 import hashlib
 from tqdm import tqdm
