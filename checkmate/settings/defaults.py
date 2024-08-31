@@ -65,7 +65,7 @@ language_patterns = {
     },
     'python': {
         'name': 'Python',
-        'patterns': [u'\.py$', u'\.pyw$'],
+        'patterns': [u'\.py$'],
     },
     'javascript': {
         'name': 'Javascript',
