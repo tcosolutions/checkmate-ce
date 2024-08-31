@@ -31,7 +31,6 @@ from types import ModuleType
 import sys
 import gzip
 import time
-import six
 import os
 import importlib
 import logging
