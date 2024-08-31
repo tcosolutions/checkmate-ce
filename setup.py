@@ -24,7 +24,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='checkmate3',
-    version='0.2.0',
+    version='4.0.5',
     author='Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)',
     author_email='andreas@quantifiedcode.com',
     license='MIT',
@@ -61,11 +61,7 @@ Source Code
 
 The source code can be found on `Github <https://github.com/tcosolutions/checkmate-ce>`.
 
-Changelog
-=========
-
-* 0.2.0: Beta-release
 """,
-    long_description_content_type='text/markdown',  # Set the format of the long description
+    long_description_content_type='text/markdown',
 )
 

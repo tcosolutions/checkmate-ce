@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "checkmate3"
-version = "0.2.1"
+version = "4.0.5"
 description = "A meta-code checker written in Python."
 readme = "README.md"
 license = { text = "AGPL-3.0" }
@@ -24,5 +24,3 @@ dependencies = [
   "pyyaml",
   "sqlalchemy"
 ]
-
-

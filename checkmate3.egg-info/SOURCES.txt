@@ -3,7 +3,6 @@ LICENSE.txt
 MANIFEST.in
 README.txt
 pyproject.toml
-requirements.txt
 setup.py
 checkmate/__init__.py
 checkmate/__main__.py
