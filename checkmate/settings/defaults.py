@@ -5,10 +5,7 @@ from checkmate.lib.models import (Project,
                                   Issue)
 from checkmate.contrib.plugins.git.models import GitSnapshot
 from collections import defaultdict
-import requests
-import os
-import time
-from pathlib import Path
+
 
 """
 Default settings values
