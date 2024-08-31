@@ -13,6 +13,7 @@ blitzdb3-ce = "*"
 sqlalchemy = "*"
 pyyaml = "*"
 tqdm = "*"
+requests = "*"
 
 [dev-packages]
 

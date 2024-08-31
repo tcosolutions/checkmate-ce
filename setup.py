@@ -24,9 +24,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='checkmate3',
-    version='4.0.5',
-    author='Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)',
-    author_email='andreas@quantifiedcode.com',
+    version='4.0.10',
     license='MIT',
     install_requires=[
         'blitzdb3_ce',

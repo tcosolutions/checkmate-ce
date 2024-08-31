@@ -1,10 +1,9 @@
 Metadata-Version: 2.1
 Name: checkmate3
-Version: 4.0.5
+Version: 4.0.10
 Summary: A meta-code checker written in Python.
 Home-page: https://github.com/tcosolutions/checkmate-ce
-Author: Andreas Dewes - QuantifiedCode UG (haftungsbeschränkt)
-Author-email: andreas@quantifiedcode.com
+Author: Andreas Dewes
 License: AGPL-3.0
 Classifier: Intended Audience :: Developers
 Classifier: Programming Language :: Python
