@@ -110,7 +110,22 @@ def get_project_and_backend(path, settings, echo=False, initialize_db=True):
 
 
 def get_backend(project_path, project_config, settings):
-    backend = SqlBackend()
+    """
+    Returns the appropriate backend instance based on the project configuration and settings.
+
+    :param project_path: The path to the project directory.
+    :param project_config: The configuration dictionary for the project.
+    :param settings: Additional settings.
+    :return: An instance of SQLBackend configured with the chosen backend.
+    """
+
+    # Get the backend configuration from the project configuration
+    backend_config = project_config.get('backend', {})
+    backend_type = backend_config.get('driver', 'sql')  # Default to 'sql' if not specified
+    connection_string = backend_config.get('connection_string', None)
+
+    # Create the appropriate backend based on the configuration
+    backend = SQLBackend(backend=backend_type, backend_opts=connection_string)
 
     return backend
 
