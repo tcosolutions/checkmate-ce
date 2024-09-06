@@ -109,23 +109,8 @@ def get_project_and_backend(path, settings, echo=False, initialize_db=True):
     return project, backend
 
 
-def get_backend(project_path, project_config, settings, echo=False, initialize_db=True):
-    backend_config = project_config['backend']
-    engine = create_engine(
-        'sqlite:///%s' % os.path.join(project_path, '.checkmate/db.sqlite'), echo=echo)
-    backend = SqlBackend(engine)
-
-    if initialize_db:
-        backend.create_schema()
-        return backend
-
-        # we run the Alembic migration script.
-        print("Running migrations...")
-        from checkmate.management.commands.alembic import Command as AlembicCommand
-        alembic_command = AlembicCommand(
-            None, backend, args=['upgrade', 'head'])
-        alembic_command.run()
-        print("Done running migrations...")
+def get_backend(project_path, project_config, settings):
+    backend = SqlBackend()
 
     return backend
 
