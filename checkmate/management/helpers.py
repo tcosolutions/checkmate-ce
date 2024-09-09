@@ -125,7 +125,7 @@ def get_backend(project_path, project_config, settings):
     connection_string = backend_config.get('connection_string', None)
 
     # Create the appropriate backend based on the configuration
-    backend = SQLBackend(backend=backend_type, backend_opts=connection_string)
+    backend = SqlBackend(backend=backend_type, backend_opts=connection_string)
 
     return backend
 

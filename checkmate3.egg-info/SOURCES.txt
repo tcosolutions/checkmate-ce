@@ -113,10 +113,10 @@ checkmate/scripts/manage.py
 checkmate/settings/__init__.py
 checkmate/settings/base.py
 checkmate/settings/defaults.py
-checkmate2.egg-info/PKG-INFO
-checkmate2.egg-info/SOURCES.txt
-checkmate2.egg-info/dependency_links.txt
-checkmate2.egg-info/entry_points.txt
-checkmate2.egg-info/not-zip-safe
-checkmate2.egg-info/requires.txt
-checkmate2.egg-info/top_level.txt
+checkmate3.egg-info/PKG-INFO
+checkmate3.egg-info/SOURCES.txt
+checkmate3.egg-info/dependency_links.txt
+checkmate3.egg-info/entry_points.txt
+checkmate3.egg-info/not-zip-safe
+checkmate3.egg-info/requires.txt
+checkmate3.egg-info/top_level.txt
