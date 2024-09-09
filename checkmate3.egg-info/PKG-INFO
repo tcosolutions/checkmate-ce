@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: checkmate3
-Version: 4.0.42
+Version: 4.0.44
 Summary: A meta-code checker written in Python.
 Home-page: https://github.com/tcosolutions/checkmate-ce
 Author: Andreas Dewes

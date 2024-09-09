@@ -8,7 +8,10 @@ checkmate/__init__.py
 checkmate/__main__.py
 checkmate/contrib/__init__.py
 checkmate/contrib/plugins/__init__.py
-checkmate/contrib/plugins/ccpp/__init__.py
+checkmate/contrib/plugins/all/gptanalyzer/__init__.py
+checkmate/contrib/plugins/all/gptanalyzer/analyzer.py
+checkmate/contrib/plugins/all/gptanalyzer/issues_data.py
+checkmate/contrib/plugins/all/gptanalyzer/setup.py
 checkmate/contrib/plugins/cve/__init__.py
 checkmate/contrib/plugins/cve/text4shell/__init__.py
 checkmate/contrib/plugins/cve/text4shell/analyzer.py
@@ -57,7 +60,6 @@ checkmate/contrib/plugins/perl/graudit/__init__.py
 checkmate/contrib/plugins/perl/graudit/analyzer.py
 checkmate/contrib/plugins/perl/graudit/issues_data.py
 checkmate/contrib/plugins/perl/graudit/setup.py
-checkmate/contrib/plugins/php/__init__.py
 checkmate/contrib/plugins/python/__init__.py
 checkmate/contrib/plugins/python/bandit/__init__.py
 checkmate/contrib/plugins/python/bandit/analyzer.py
@@ -68,7 +70,6 @@ checkmate/contrib/plugins/ruby/brakeman/__init__.py
 checkmate/contrib/plugins/ruby/brakeman/analyzer.py
 checkmate/contrib/plugins/ruby/brakeman/issues_data.py
 checkmate/contrib/plugins/ruby/brakeman/setup.py
-checkmate/contrib/plugins/supply/__init__.py
 checkmate/helpers/__init__.py
 checkmate/helpers/facts.py
 checkmate/helpers/hashing.py

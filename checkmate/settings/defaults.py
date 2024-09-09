@@ -51,7 +51,7 @@ plugins = {
     #'fluidattacksscannerkotlin': 'checkmate.contrib.plugins.kotlin.fluidattacksscanner',
     #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
     'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
-    #'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
+    'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
     #'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
 }
 
