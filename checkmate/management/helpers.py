@@ -1,19 +1,13 @@
 # -*- coding: utf-8 -*-
 
-
 import os
 import re
-import imp
 import json
 import yaml
-import hashlib
 import fnmatch
-
-from collections import defaultdict
-
-from blitzdb import SqlBackend
-from sqlalchemy import create_engine
 from functools import reduce
+
+from backend import SQLBackend  # Importing SQLBackend from backend.py
 
 
 def get_project_path(path=None):
@@ -88,28 +82,24 @@ def parse_checkmate_settings(content):
     """
     Basically a simple .yml parser that returns a simple Python dict to be used later on.
     """
-
-    return yaml.load(content)
+    return yaml.safe_load(content)
 
 
 def parse_checkignore(content):
-
     lines = [l for l in [s.strip() for s in content.split("\n")]
              if l and not l[0] == '#']
-
     return lines
 
 
 def get_project_and_backend(path, settings, echo=False, initialize_db=True):
     project_path = get_project_path(path)
     project_config = get_project_config(project_path)
-    backend = get_backend(project_path, project_config,
-                          settings, echo=echo, initialize_db=initialize_db)
+    backend = get_backend(project_path, project_config, settings, echo=echo, initialize_db=initialize_db)
     project = get_project(project_path, project_config, settings, backend)
     return project, backend
 
 
-def get_backend(project_path, project_config, settings):
+def get_backend(project_path, project_config, settings, echo=False, initialize_db=True):
     """
     Returns the appropriate backend instance based on the project configuration and settings.
 
@@ -118,14 +108,19 @@ def get_backend(project_path, project_config, settings):
     :param settings: Additional settings.
     :return: An instance of SQLBackend configured with the chosen backend.
     """
-
     # Get the backend configuration from the project configuration
     backend_config = project_config.get('backend', {})
     backend_type = backend_config.get('driver', 'sql')  # Default to 'sql' if not specified
     connection_string = backend_config.get('connection_string', None)
 
-    # Create the appropriate backend based on the configuration
-    backend = SqlBackend(engine=connection_string)
+    if connection_string is None:
+        raise ValueError("Connection string is required for SQLBackend")
+
+    engine = create_engine(connection_string, echo=echo)
+    backend = SQLBackend(engine=engine)
+
+    if initialize_db:
+        backend.create_tables()
 
     return backend
 
@@ -135,18 +130,16 @@ def get_project(project_path, project_config, settings, backend):
     ProjectClass = settings.models[project_class]
 
     try:
-        project = backend.get(
-            ProjectClass, {'pk': project_config['project_id']})
+        project = backend.query(ProjectClass).filter_by(pk=project_config['project_id']).first()
     except ProjectClass.DoesNotExist:
-        project = ProjectClass({'pk': project_config['project_id']})
-        backend.save(project)
+        project = ProjectClass(pk=project_config['project_id'])
+        backend.add(project)
         # we retrieve the project from the DB, so that all the hooks get executed properly.
-        project = backend.get(
-            ProjectClass, {'pk': project_config['project_id']})
+        project = backend.query(ProjectClass).filter_by(pk=project_config['project_id']).first()
 
     project.path = project_path
 
-    with backend.transaction():
-        backend.save(project)
+    backend.add(project)
 
     return project
+
