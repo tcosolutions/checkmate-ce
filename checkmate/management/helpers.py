@@ -7,7 +7,7 @@ import yaml
 import fnmatch
 from functools import reduce
 
-from backend import SQLBackend  # Importing SQLBackend from backend.py
+from backends import SQLBackend  # Importing SQLBackend from backend.py
 
 
 def get_project_path(path=None):
