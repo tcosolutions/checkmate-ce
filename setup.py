@@ -23,11 +23,11 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='checkmate3',
-    version='4.0.50',
+    name='checkmate2',
+    version='4.0.54',
     license='MIT',
     install_requires=[
-        'blitzdb4',
+        'blitzdb2',
         'pylint',
         'pyflakes',
         'pep8',
