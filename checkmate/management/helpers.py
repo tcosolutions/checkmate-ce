@@ -6,9 +6,8 @@ import json
 import yaml
 import fnmatch
 from functools import reduce
-
-from backends.sql import SQLBackend  # Importing SQLBackend from backend.py
-
+import blitzdb
+import sqlalchemy
 
 def get_project_path(path=None):
     if not path:
@@ -110,14 +109,18 @@ def get_backend(project_path, project_config, settings, echo=False, initialize_d
     """
     # Get the backend configuration from the project configuration
     backend_config = project_config.get('backend', {})
-    backend_type = backend_config.get('driver', 'sql')  # Default to 'sql' if not specified
+    backend_type = backend_config.get('driver', 'file')  # Default to 'file' if not specified
     connection_string = backend_config.get('connection_string', None)
 
-    if connection_string is None:
-        raise ValueError("Connection string is required for SQLBackend")
+    if backend_type == "sql":
+      if not connection_string:
+        raise ValueError("Connection string is required for the 'sql' backend.")
+      engine = create_engine(connection_string, echo=echo)
+      backend = SQLBackend(engine=engine)
 
-    engine = create_engine(connection_string, echo=echo)
-    backend = SQLBackend(engine=engine)
+    # Default to a generic Backend if not handled
+    else:
+      backend = Backend()  # Assuming this is a default generic backend class
 
     if initialize_db:
         backend.create_tables()

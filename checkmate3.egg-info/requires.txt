@@ -1,7 +1,0 @@
-blitzdb4
-pylint
-pyflakes
-pep8
-chardet
-pyyaml
-sqlalchemy

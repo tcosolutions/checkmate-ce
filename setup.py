@@ -24,10 +24,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='checkmate2',
-    version='4.0.54',
+    version='4.0.60',
     license='MIT',
     install_requires=[
-        'blitzdb2',
+        'blitzdb3',
         'pylint',
         'pyflakes',
         'pep8',
@@ -40,9 +40,6 @@ setup(
             'checkmate = checkmate.scripts.manage:main',
         ],
     },
-    url='https://github.com/tcosolutions/checkmate-ce',
-    packages=find_packages(),
-    zip_safe=False,
     description='A meta-code checker written in Python.',
     long_description="""\
 Checkmate is a cross-language (meta-)tool for static code analysis, written in Python.
@@ -52,12 +49,12 @@ to provide clear, actionable insights to the user.
 Documentation
 =============
 
-The documentation can be found `here <https://github.com/tcosolutions/checkmate-ce>`.
+The documentation can be found `here <https://github.com/tcosolutions/checkmate>`.
 
 Source Code
 ===========
 
-The source code can be found on `Github <https://github.com/tcosolutions/checkmate-ce>`.
+The source code can be found on `Github <https://github.com/tcosolutions/checkmate>`.
 
 """,
     long_description_content_type='text/markdown',
