@@ -24,7 +24,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='checkmate2',
-    version='4.0.60',
+    version='4.0.61',
     license='MIT',
     install_requires=[
         'blitzdb3',

@@ -115,7 +115,7 @@ def get_backend(project_path, project_config, settings, echo=False, initialize_d
     if backend_type == "sql":
       if not connection_string:
         raise ValueError("Connection string is required for the 'sql' backend.")
-      engine = create_engine(connection_string, echo=echo)
+      engine = create_engine(connection_string)
       backend = SQLBackend(engine=engine)
 
     # Default to a generic Backend if not handled
