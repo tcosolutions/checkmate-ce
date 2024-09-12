@@ -7,7 +7,8 @@ import yaml
 import fnmatch
 from functools import reduce
 import blitzdb
-import sqlalchemy
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
+from sqlalchemy.sql import select
 
 def get_project_path(path=None):
     if not path:
