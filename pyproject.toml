@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "checkmate2"
-version = "4.0.63"
+version = "4.0.64"
 authors = [
     { name = "Andreas Dewes" }
 ]
@@ -20,10 +20,6 @@ classifiers = [
 ]
 dependencies = [
   "blitzdb3",
-  "pylint",
-  "pyflakes",
-  "pep8",
-  "chardet",
   "pyyaml",
   "sqlalchemy"
 ]

@@ -13,7 +13,6 @@ import subprocess
 import datetime
 import re
 import time
-import chardet
 import logging
 import traceback
 import select
@@ -530,14 +529,10 @@ class Repository(object):
             return [x for x in diffs if len(x) == 2]
 
     def _decode_file_content(self, content):
-        encoding = chardet.detect(content)
         try:
-            if encoding is not None:
-                return content.decode(encoding['encoding'])
-            else:
-                return content.decode('utf-8', errors='ignore')
-        except UnicodeDecodeError:
             return content.decode('utf-8', errors='ignore')
+        except UnicodeDecodeError:
+            return content.decode('latin1', errors='ignore')
 
     def get_file_content(self, commit_sha, path, decode=False):
         

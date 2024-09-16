@@ -110,7 +110,7 @@ def get_backend(project_path, project_config, settings, echo=False, initialize_d
     """
     # Get the backend configuration from the project configuration
     backend_config = project_config.get('backend', {})
-    backend_type = backend_config.get('driver', 'file')  # Default to 'file' if not specified
+    backend_type = backend_config.get('driver', 'sqlite') 
     connection_string = backend_config.get('connection_string', None)
 
     if backend_type == "sql":

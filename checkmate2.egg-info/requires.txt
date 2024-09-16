@@ -1,7 +1,3 @@
 blitzdb3
-pylint
-pyflakes
-pep8
-chardet
 pyyaml
 sqlalchemy
