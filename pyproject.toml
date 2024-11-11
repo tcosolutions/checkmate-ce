@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "checkmate2"
-version = "4.0.65"
+version = "4.0.66"
 authors = [
     { name = "Andreas Dewes" }
 ]

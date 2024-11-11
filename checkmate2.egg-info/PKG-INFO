@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: checkmate2
-Version: 4.0.65
+Version: 4.0.66
 Summary: A meta-code checker written in Python.
 Author: Andreas Dewes
 License: AGPL-3.0
