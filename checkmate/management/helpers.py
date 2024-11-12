@@ -83,7 +83,7 @@ def get_project_and_backend(path, settings, echo=False, initialize_db=True):
 def get_backend(project_path, project_config, settings, echo=False, initialize_db=True):
     """Return the appropriate backend instance based on the project configuration and settings."""
     backend_config = project_config.get('backend', {})
-    backend_type = backend_config.get('backend')
+    backend_type = backend_config.get('driver')
     connection_string = backend_config.get('connection_string', None)
 
     if backend_type == "sql":
