@@ -114,9 +114,9 @@ checkmate/scripts/manage.py
 checkmate/settings/__init__.py
 checkmate/settings/base.py
 checkmate/settings/defaults.py
-checkmate2.egg-info/PKG-INFO
-checkmate2.egg-info/SOURCES.txt
-checkmate2.egg-info/dependency_links.txt
-checkmate2.egg-info/entry_points.txt
-checkmate2.egg-info/requires.txt
-checkmate2.egg-info/top_level.txt
+checkmate5.egg-info/PKG-INFO
+checkmate5.egg-info/SOURCES.txt
+checkmate5.egg-info/dependency_links.txt
+checkmate5.egg-info/entry_points.txt
+checkmate5.egg-info/requires.txt
+checkmate5.egg-info/top_level.txt

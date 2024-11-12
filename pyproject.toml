@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "checkmate2"
+name = "checkmate5"
 version = "4.0.67"
 authors = [
     { name = "Andreas Dewes" }
