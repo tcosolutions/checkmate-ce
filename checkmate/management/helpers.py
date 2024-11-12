@@ -97,7 +97,7 @@ def get_backend(project_path, project_config, settings, echo=False, initialize_d
         engine = create_engine(connection_string, echo=echo)
         backend = SQLBackend(engine=engine)
     else:
-        backend = Backend()  # Default backend class if unrecognized backend_type
+        raise ValueError("Unsupported backend type specified.")
 
     if initialize_db:
         try:
