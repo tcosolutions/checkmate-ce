@@ -24,10 +24,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='checkmate5',
-    version='4.0.69',
+    version='4.0.71',
     license='MIT',
     install_requires=[
-        'blitzdb3',
+        'blitzdb5',
         'pyyaml',
         'sqlalchemy'
     ],

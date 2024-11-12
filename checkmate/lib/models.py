@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from blitzdb import Document, SqlBackend
+from blitzdb import Document, SQLBackend
 from blitzdb.fields import (BooleanField,
                             CharField,
                             DateTimeField,
@@ -180,7 +180,7 @@ class Diff(BaseDocument):
     snapshot_b = ForeignKeyField('Snapshot', backref='diffs_b')
 
     def get_issues_count(self, by_severity=False):
-        if isinstance(self.backend, SqlBackend):
+        if isinstance(self.backend, SQLBackend):
             return self._get_issues_count_sql(by_severity=by_severity)
         raise NotImplementedError
 
@@ -294,7 +294,7 @@ class Diff(BaseDocument):
                 'fixed': map_reducer.mapreduce(fixed_issues)}
 
     def summarize_issues(self, include_filename=False, ignore=False):
-        if isinstance(self.backend, SqlBackend):
+        if isinstance(self.backend, SQLBackend):
             return self._summarize_issues_sql(include_filename=include_filename, ignore=ignore)
         raise NotImplementedError
 
@@ -344,7 +344,7 @@ class Snapshot(BaseDocument):
         """
 
     def summarize_issues(self, include_filename=False, ignore=False):
-        if isinstance(self.backend, SqlBackend):
+        if isinstance(self.backend, SQLBackend):
             return self._summarize_issues_sql(include_filename=include_filename, ignore=ignore)
         raise NotImplementedError
 
