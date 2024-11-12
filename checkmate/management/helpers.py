@@ -113,7 +113,7 @@ def get_project(project_path, project_config, settings, backend):
     ProjectClass = settings.models[project_class]
 
     try:
-        project = backend.query(ProjectClass).filter_by(pk=project_config['project_id']).first()
+        project = backend.session.query(ProjectClass).filter_by(pk=project_config['project_id']).first()
     except ProjectClass.DoesNotExist:
         project = ProjectClass(pk=project_config['project_id'])
         backend.add(project)
