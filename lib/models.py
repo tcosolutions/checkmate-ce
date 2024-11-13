@@ -1,12 +1,12 @@
 from blitzdb import Document
-from blitzdb.backends.sql.backend import Backend as BlitzDBBackend
+from blitzdb.backends.sql.backend import Backend as FileBackend
 from typing import Any, Optional, Dict
 import logging
 from contextlib import contextmanager
 
 logger = logging.getLogger(__name__)
 
-class Backend(BlitzDBBackend):
+class Backend(FileBackend):
     def __init__(self, engine: Any, backend_type: str = 'sql', pool_size: int = 5) -> None:
         """Initialize BlitzDB backend with specified engine and type.
         
