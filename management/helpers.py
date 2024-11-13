@@ -1,8 +1,8 @@
 from typing import Any, Dict, Optional
-from sqlalchemy import create_engine
-from sqlalchemy.pool import QueuePool
 import logging
-from checkmate.lib.models import Backend
+import os
+from sqlalchemy import create_engine
+from ..lib.models import FileBackend, SQLBackend
 from ..exceptions import ConfigurationError
 
 logger = logging.getLogger(__name__)
@@ -58,8 +58,8 @@ def get_backend(
     project_path: str,
     project_config: Dict[str, Any],
     settings: Optional[Dict[str, Any]] = None
-) -> Backend:
-    """Create and return appropriate backend based on project configuration.
+) -> Any:
+    """Create and return appropriate backend based on configuration.
     
     Args:
         project_path: Path to the project
@@ -67,38 +67,24 @@ def get_backend(
         settings: Optional additional settings
         
     Returns:
-        Initialized Backend instance
+        FileBackend or SQLBackend instance
         
     Raises:
         ConfigurationError: If configuration is invalid
-        ConnectionError: If database connection fails
+        ConnectionError: If connection fails
     """
     try:
-        # Validate configuration
-        validate_config(project_config)
-        
         backend_type = project_config.get('backend', {}).get('type', 'sql')
-        pool_size = settings.get('pool_size', 5) if settings else 5
-        
-        logger.info(f"Initializing {backend_type} backend")
         
         if backend_type == 'sql':
             connection_string = get_connection_string(project_config)
-            engine = create_engine(
-                connection_string,
-                poolclass=QueuePool,
-                pool_size=pool_size,
-                max_overflow=10,
-                pool_timeout=30
-            )
-        elif backend_type == 'sqlfile':
+            engine = create_engine(connection_string)
+            backend = SQLBackend(engine)
+        else:  # default to file backend
             if not project_path:
-                raise ConfigurationError("Project path is required for sqlfile backend")
-            engine = project_path
-        else:
-            raise ConfigurationError(f"Unknown backend type: {backend_type}")
-        
-        backend = Backend(engine, backend_type, pool_size)
+                raise ConfigurationError("Project path is required for file backend")
+            os.makedirs(project_path, exist_ok=True)
+            backend = FileBackend(project_path)
         
         # Test connection
         backend.test_connection()

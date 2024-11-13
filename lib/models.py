@@ -1,47 +1,75 @@
-from blitzdb import Document
-from blitzdb.backends.file.backend import Backend as FileBackend
+from blitzdb import FileBackend as BlitzDBFileBackend
+from blitzdb.backends.sql import Backend as BlitzDBSQLBackend
 from typing import Any, Optional, Dict
 import logging
 from contextlib import contextmanager
 
 logger = logging.getLogger(__name__)
 
-class Backend(FileBackend):
-    def __init__(self, engine: Any, backend_type: str = 'sql', pool_size: int = 5) -> None:
-        """Initialize BlitzDB backend with specified engine and type.
+class FileBackend(BlitzDBFileBackend):
+    def __init__(self, path: str) -> None:
+        """Initialize FileBackend with specified path.
         
         Args:
-            engine: SQL connection engine or file path depending on backend_type
-            backend_type: Type of backend ('sql' or 'sqlfile')
-            pool_size: Connection pool size for SQL backend
+            path: Path to store the database files
             
         Raises:
-            ValueError: If backend_type is not supported
+            ValueError: If path is invalid
         """
-        if backend_type not in ['sql', 'sqlfile']:
-            raise ValueError(f"Unsupported backend type: {backend_type}")
-            
-        self.backend_type = backend_type
-        self.engine = engine
-        self.pool_size = pool_size
-        
-        backend_params = {
-            'sql': {
-                'connection': engine,
-                'backend': 'sql',
-                'pool_size': pool_size
-            },
-            'sqlfile': {
-                'path': engine,
-                'backend': 'sqlfile'
-            }
-        }.get(backend_type)
-        
-        logger.debug(f"Initializing {backend_type} backend with params: {backend_params}")
-        super().__init__(**backend_params)
+        logger.debug(f"Initializing FileBackend with path: {path}")
+        super().__init__(path)
+        self.path = path
 
     def test_connection(self) -> bool:
-        """Test the backend connection.
+        """Test the file access.
+        
+        Returns:
+            bool: True if file access is successful
+            
+        Raises:
+            ConnectionError: If file access test fails
+        """
+        try:
+            self.begin()
+            self.commit()
+            logger.info("File access test successful")
+            return True
+        except Exception as e:
+            logger.error(f"File access test failed: {str(e)}")
+            raise ConnectionError(f"File access test failed: {str(e)}")
+
+    @contextmanager
+    def session(self):
+        """Context manager for file operations.
+        
+        Yields:
+            FileBackend: Self with active session
+        """
+        try:
+            self.begin()
+            yield self
+            self.commit()
+        except Exception as e:
+            logger.error(f"Session error: {str(e)}")
+            self.rollback()
+            raise
+
+class SQLBackend(BlitzDBSQLBackend):
+    def __init__(self, connection: Any) -> None:
+        """Initialize SQL Backend with database connection.
+        
+        Args:
+            connection: SQLAlchemy engine or connection object
+            
+        Raises:
+            ConnectionError: If database connection fails
+        """
+        logger.debug(f"Initializing SQL Backend with connection: {connection}")
+        super().__init__(connection)
+        self.connection = connection
+
+    def test_connection(self) -> bool:
+        """Test the database connection.
         
         Returns:
             bool: True if connection is successful
@@ -50,31 +78,23 @@ class Backend(FileBackend):
             ConnectionError: If connection test fails
         """
         try:
-            if self.backend_type == 'sql':
-                with self.engine.connect() as conn:
-                    conn.execute('SELECT 1')
-            elif self.backend_type == 'sqlfile':
-                # Test file access
-                with open(self.engine, 'a+') as _:
-                    pass
-            logger.info(f"Connection test successful for {self.backend_type} backend")
+            with self.connection.connect() as conn:
+                conn.execute('SELECT 1')
+            logger.info("Database connection test successful")
             return True
         except Exception as e:
-            logger.error(f"Connection test failed: {str(e)}")
-            raise ConnectionError(f"Connection test failed: {str(e)}")
+            logger.error(f"Database connection test failed: {str(e)}")
+            raise ConnectionError(f"Database connection test failed: {str(e)}")
 
     @contextmanager
     def session(self):
         """Context manager for database sessions.
         
         Yields:
-            Backend: Self with active session
-            
-        Example:
-            with backend.session() as session:
-                session.save(document)
+            SQLBackend: Self with active session
         """
         try:
+            self.begin()
             yield self
             self.commit()
         except Exception as e:
@@ -82,15 +102,18 @@ class Backend(FileBackend):
             self.rollback()
             raise
         finally:
-            if self.backend_type == 'sql':
-                self.engine.dispose()
+            if hasattr(self.connection, 'dispose'):
+                self.connection.dispose()
 
     def close(self) -> None:
-        """Properly close backend connections."""
+        """Clean up database connections."""
         try:
-            if self.backend_type == 'sql':
-                self.engine.dispose()
-            logger.info(f"Closed {self.backend_type} backend connection")
+            if hasattr(self.connection, 'dispose'):
+                self.connection.dispose()
+            logger.info("Closed SQL Backend connection")
         except Exception as e:
             logger.error(f"Error closing backend: {str(e)}")
-            raise 
+            raise
+
+# For backward compatibility
+Backend = SQLBackend  # Default to SQLBackend for existing code
