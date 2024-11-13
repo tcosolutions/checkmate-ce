@@ -2,7 +2,7 @@ from typing import Any, Dict, Optional
 from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
 import logging
-from ..lib.models import Backend
+from checkmate.lib.models import Backend
 from ..exceptions import ConfigurationError
 
 logger = logging.getLogger(__name__)

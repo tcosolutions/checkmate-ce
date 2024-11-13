@@ -9,7 +9,7 @@ from functools import reduce
 import argparse
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 from sqlalchemy.exc import SQLAlchemyError
-from lib.models import Backend
+from checkmate.lib.models import Backend
 
 def get_project_path(path=None):
     if not path:
