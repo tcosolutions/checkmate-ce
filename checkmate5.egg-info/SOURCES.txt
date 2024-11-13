@@ -6,6 +6,7 @@ pyproject.toml
 setup.py
 checkmate/__init__.py
 checkmate/__main__.py
+checkmate/exceptions.py
 checkmate/contrib/__init__.py
 checkmate/contrib/plugins/__init__.py
 checkmate/contrib/plugins/all/gptanalyzer/__init__.py
