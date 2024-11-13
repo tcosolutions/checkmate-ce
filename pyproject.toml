@@ -1,10 +1,13 @@
+[tool.setuptools]
+packages = ["checkmate"]
+
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "checkmate5"
-version = "4.0.76"
+version = "4.0.77"
 authors = [
     { name = "Andreas Dewes" }
 ]

@@ -1,7 +1,7 @@
 CHANGELOG.txt
 LICENSE.txt
 MANIFEST.in
-README.txt
+README.md
 pyproject.toml
 setup.py
 checkmate/__init__.py
@@ -120,3 +120,5 @@ checkmate5.egg-info/dependency_links.txt
 checkmate5.egg-info/entry_points.txt
 checkmate5.egg-info/requires.txt
 checkmate5.egg-info/top_level.txt
+lib/models.py
+management/helpers.py
