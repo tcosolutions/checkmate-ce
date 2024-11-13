@@ -1,5 +1,5 @@
 from blitzdb import Document
-from blitzdb.backends.sql.backend import Backend as FileBackend
+from blitzdb.backends.file.backend import Backend as FileBackend
 from typing import Any, Optional, Dict
 import logging
 from contextlib import contextmanager

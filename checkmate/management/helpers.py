@@ -7,7 +7,6 @@ import yaml
 import fnmatch
 from functools import reduce
 import argparse
-from blitzdb import SQLBackend
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 from sqlalchemy.exc import SQLAlchemyError
 from ..lib.models import Backend

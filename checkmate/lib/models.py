@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from blitzdb import Document, Backend as FileBackend
+from blitzdb import Document, FileBackend
 from blitzdb.fields import (BooleanField,
                             CharField,
                             DateTimeField,
