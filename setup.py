@@ -24,7 +24,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='checkmate5',
-    version='4.0.79',
+    version='4.0.80',
     license='MIT',
     install_requires=[
         'blitzdb5',
