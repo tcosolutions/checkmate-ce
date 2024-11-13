@@ -9,7 +9,7 @@ from functools import reduce
 import argparse
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 from sqlalchemy.exc import SQLAlchemyError
-from checkmate.lib.models import Backend
+from checkmate.lib.models import CMFileBackend
 
 def get_project_path(path=None):
     if not path:
@@ -91,12 +91,12 @@ def get_backend(project_path, project_config, settings, echo=False, initialize_d
         if not connection_string:
             raise ValueError("Connection string is required for the 'sql' backend.")
         engine = create_engine(connection_string)
-        backend = Backend(engine)
+        backend = CMFileBackend(engine)
     elif backend_type == "sqlite":
         if not connection_string:
             connection_string = f"sqlite:///{project_path}/database.db"
         engine = create_engine(connection_string, echo=echo)
-        backend = Backend(engine)
+        backend = CMFileBackend(engine)
     else:
         raise ValueError("Unsupported backend type specified.")
 
