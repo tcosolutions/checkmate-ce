@@ -14,4 +14,4 @@ class ConfigurationError(Exception):
     def __str__(self) -> str:
         if self.config:
             return f"{self.message} (Config: {self.config})"
-        return self.message 
+        return self.message
