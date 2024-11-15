@@ -83,6 +83,7 @@ checkmate/helpers/hashing.py
 checkmate/helpers/issue.py
 checkmate/helpers/settings.py
 checkmate/lib/__init__.py
+checkmate/lib/backend.py
 checkmate/lib/models.py
 checkmate/lib/analysis/__init__.py
 checkmate/lib/analysis/base.py
@@ -127,7 +128,6 @@ checkmate5.egg-info/dependency_links.txt
 checkmate5.egg-info/entry_points.txt
 checkmate5.egg-info/requires.txt
 checkmate5.egg-info/top_level.txt
-lib/models.py
 management/helpers.py
 venv/lib/python3.8/site-packages/SQLAlchemy-2.0.36-py3.8.egg/EGG-INFO/requires.txt
 venv/lib/python3.8/site-packages/SQLAlchemy-2.0.36-py3.8.egg/EGG-INFO/top_level.txt
