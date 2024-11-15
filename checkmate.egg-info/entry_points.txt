@@ -1,3 +1,0 @@
-[console_scripts]
-checkmate = checkmate.scripts.manage:main
-
