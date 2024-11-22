@@ -432,6 +432,9 @@ class ProjectIssueClass(BaseDocument):
 class Project(BaseDocument):
 
     IssueClass = IssueClass
+    project_id = IntegerField(indexed=True, unique=True)
+
+    
 
     # contains a hash of the project configuration that will be used to mark
     # snapshots, diffs, file revisions etc.
