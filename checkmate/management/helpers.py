@@ -112,15 +112,16 @@ def get_project(project_path, project_config, settings, backend):
     project_class = project_config.get('project_class', 'Project')
     ProjectClass = settings.models[project_class]
 
-    try:
-        project = backend.filter(ProjectClass, {'pk': project_config['project_id']}).first()
-    except ProjectClass.DoesNotExist:
+    # Attempt to find the project by project_id
+    project = backend.filter(ProjectClass, {'pk': project_config['project_id']}).first()
+
+    # If the project doesn't exist, create a new one
+    if project is None:
         project = ProjectClass(pk=project_config['project_id'])
         backend.add(project)
-        project = backend.query(ProjectClass).filter_by(pk=project_config['project_id']).first()
+        # If needed, ensure that the project is persisted
+        backend.commit()  # If your backend requires an explicit commit
 
-    project.path = project_path
-    backend.add(project)
     return project
 
 def main():
