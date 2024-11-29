@@ -91,12 +91,12 @@ def get_backend(project_path, project_config, settings, echo=False, initialize_d
         if not connection_string:
             raise ValueError("Connection string is required for the 'sql' backend.")
         engine = create_engine(connection_string)
-        backend = Backend(engine)
+        backend = SQLBackend(engine)
     elif backend_type == "sqlite":
         if not connection_string:
             connection_string = f"sqlite:///{project_path}/database.db"
         engine = create_engine(connection_string, echo=echo)
-        backend = Backend(engine)
+        backend = FileBackend(engine)
     else:
         raise ValueError("Unsupported backend type specified.")
 
