@@ -7,9 +7,9 @@ import yaml
 import fnmatch
 from functools import reduce
 import argparse
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
+from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
-from checkmate.lib.backend import SQLBackend, FileBackend
+from checkmate.lib.backend import SQLBackend
 
 def get_project_path(path=None):
     if not path:
@@ -96,7 +96,7 @@ def get_backend(project_path, project_config, settings, echo=False, initialize_d
         if not connection_string:
             connection_string = f"sqlite:///{project_path}/database.db"
         engine = create_engine(connection_string, echo=echo)
-        backend = FileBackend(engine)
+        backend = SQLBackend(engine)
     else:
         raise ValueError("Unsupported backend type specified.")
 
