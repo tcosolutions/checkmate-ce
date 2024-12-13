@@ -1,3 +1,0 @@
-blitzdb5
-pyyaml
-sqlalchemy
