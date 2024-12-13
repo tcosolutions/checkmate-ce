@@ -1,10 +1,23 @@
-[tool.setuptools]
-packages = ["checkmate"]
-
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools", "setuptools_scm", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "checkmate5"
+description = "A document-oriented database written purely in Python."
+readme = "README.md"
+
+dynamic = ["version"]
+[tool.setuptools_scm]
+local_scheme = "no-local-version"  # Removes the local version part (e.g., +g748e57a)
+version_scheme = "release-branch-semver"  # Ensures only the clean version is used
+
 
 
 [project.scripts]
 checkmate = "checkmate.scripts.manage:main"
+
+dynamic = ["version"]
+[tool.setuptools_scm]
+local_scheme = "no-local-version"  # Removes the local version part (e.g., +g748e57a)
+version_scheme = "release-branch-semver"  # Ensures only the clean version is used
