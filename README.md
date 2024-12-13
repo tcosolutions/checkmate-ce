@@ -1,4 +1,3 @@
-
 # Welcome to Checkmate!
 
 This is a modified version of original Checkmate.
