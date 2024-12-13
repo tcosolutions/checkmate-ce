@@ -124,19 +124,3 @@ def get_project(project_path, project_config, settings, backend):
 
     return project
 
-def main():
-    parser = argparse.ArgumentParser(description="Checkmate backend configuration")
-    parser.add_argument('--backend', type=str, help="Specify the backend type (e.g., sqlite, sql)", default="sqlite")
-    parser.add_argument('--connection-string', type=str, help="Connection string for the backend", default=None)
-    args = parser.parse_args()
-
-    backend_type = args.backend
-    connection_string = args.connection_string
-
-    print(f"Using backend: {backend_type}")
-    if connection_string:
-        print(f"Using connection string: {connection_string}")
-
-if __name__ == "__main__":
-    main()
-
