@@ -25,8 +25,6 @@ plugins = {
     #'apex': 'checkmate.contrib.plugins.apex.pmdapex',
     #'semgrep': 'checkmate.contrib.plugins.java.semgrep',
     #'checkov': 'checkmate.contrib.plugins.iac.checkov',
-    'tfsec': 'checkmate.contrib.plugins.iac.tfsec',
-    'kubescape': 'checkmate.contrib.plugins.iac.kubescape',
     #'insidersecswift': 'checkmate.contrib.plugins.swift.insidersecswift',
     #'insiderseckotlin': 'checkmate.contrib.plugins.kotlin.insiderseckotlin',
     #'insiderseccsharp': 'checkmate.contrib.plugins.csharp.insiderseccsharp',
