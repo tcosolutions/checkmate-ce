@@ -20,7 +20,6 @@ plugins = {
     #'yara': 'checkmate.contrib.plugins.all.yara',
     #'metrics': 'checkmate.contrib.plugins.all.metrics',
     'bandit': 'checkmate.contrib.plugins.python.bandit',
-    'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
     #'phpanalyzer':  'checkmate.contrib.plugins.php.progpilot',
     #'pmd': 'checkmate.contrib.plugins.java.pmd',
     #'apex': 'checkmate.contrib.plugins.apex.pmdapex',
