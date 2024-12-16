@@ -32,8 +32,6 @@ plugins = {
     #'insiderseckotlin': 'checkmate.contrib.plugins.kotlin.insiderseckotlin',
     #'insiderseccsharp': 'checkmate.contrib.plugins.csharp.insiderseccsharp',
     #'pmdapex': 'checkmate.contrib.plugins.apex.pmdapex',
-    'semgrepjava': 'checkmate.contrib.plugins.java.semgrepjava',
-    'semgrepeslint': 'checkmate.contrib.plugins.javascript.semgrepeslint',
     'graudit': 'checkmate.contrib.plugins.perl.graudit',
     'text4shell': 'checkmate.contrib.plugins.cve.text4shell',
     #'fluidattackscsharp': 'checkmate.contrib.plugins.csharp.fluidattacksscanner',
