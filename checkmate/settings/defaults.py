@@ -47,7 +47,11 @@ plugins = {
     #'fluidattacksscannerpython': 'checkmate.contrib.plugins.python.fluidattacksscanner',
     'gostaticcheck': 'checkmate.contrib.plugins.golang.gostaticcheck',
     'gptanalyzer': 'checkmate.contrib.plugins.all.gptanalyzer',
-    #'privategptanalyzer': 'checkmate.contrib.plugins.all.privategpt',
+    'bandit': 'checkmate.contrib.plugins.python.bandit',
+    'brakeman': 'checkmate.contrib.plugins.ruby.brakeman',
+    'tfsec': 'checkmate.contrib.plugins.iac.tfsec',
+    'kubescape': 'checkmate.contrib.plugins.iac.kubescape',
+  
 }
 
 language_patterns = {
