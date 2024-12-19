@@ -48,9 +48,7 @@ class GptAnalyzer(BaseAnalyzer):
             os.environ["PATH"] = "/root/.go/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/:/usr/local/go/bin/"
 
             try:
-                result = subprocess.check_output(["/root/bin/ptpt",
-                                                  "run",
-                                                  "scr",
+                result = subprocess.check_output(["/root/bin/aicodereview",
                                                   f.name],
                                                   stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
@@ -74,7 +72,7 @@ class GptAnalyzer(BaseAnalyzer):
                   location = (((value,None),
                              (value,None)),)
 
-                  string = issue["finding"]
+                  string = issue["description"]
                   string = string.replace("'","")
                   string = string.replace("`","")
                   string = string.replace("\"","")
@@ -82,7 +80,7 @@ class GptAnalyzer(BaseAnalyzer):
                   string = re.sub('[^A-Za-z0-9 ]+', '', string)
 
                   issues.append({
-                            'code': "I001",
+                            'code': issue["category"],
                             'location': location,
                             'data': string,
                             'file': file_revision.path,
