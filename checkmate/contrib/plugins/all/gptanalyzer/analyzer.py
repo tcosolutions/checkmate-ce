@@ -49,6 +49,7 @@ class GptAnalyzer(BaseAnalyzer):
 
             try:
                 result = subprocess.check_output(["aigraphcodescan",
+                                                  "--directory",
                                                   f.name],
                                                   stderr=subprocess.DEVNULL).strip()
             except subprocess.CalledProcessError as e:
