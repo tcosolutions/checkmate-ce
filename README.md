@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 # Welcome to Checkmate!
 
 
