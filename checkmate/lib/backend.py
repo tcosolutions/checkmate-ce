@@ -1,4 +1,3 @@
-from blitzdb import FileBackend as BlitzDBFileBackend
 from blitzdb.backends.sql import Backend as BlitzDBSQLBackend
 from typing import Any, Optional, Dict
 import logging
@@ -6,53 +5,6 @@ from contextlib import contextmanager
 
 logger = logging.getLogger(__name__)
 
-class FileBackend(BlitzDBFileBackend):
-    def __init__(self, path: str) -> None:
-        """Initialize FileBackend with specified path.
-        
-        Args:
-            path: Path to store the database files
-            
-        Raises:
-            ValueError: If path is invalid
-        """
-        logger.debug(f"Initializing FileBackend with path: {path}")
-        super().__init__(path)
-        self.path = path
-
-    def test_connection(self) -> bool:
-        """Test the file access.
-        
-        Returns:
-            bool: True if file access is successful
-            
-        Raises:
-            ConnectionError: If file access test fails
-        """
-        try:
-            self.begin()
-            self.commit()
-            logger.info("File access test successful")
-            return True
-        except Exception as e:
-            logger.error(f"File access test failed: {str(e)}")
-            raise ConnectionError(f"File access test failed: {str(e)}")
-
-    @contextmanager
-    def session(self):
-        """Context manager for file operations.
-        
-        Yields:
-            FileBackend: Self with active session
-        """
-        try:
-            self.begin()
-            yield self
-            self.commit()
-        except Exception as e:
-            logger.error(f"Session error: {str(e)}")
-            self.rollback()
-            raise
 
 class SQLBackend(BlitzDBSQLBackend):
     def __init__(self, connection: Any) -> None:
